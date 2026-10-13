@@ -1261,9 +1261,7 @@ function boardHTML(){
     else{st='Live board, shared with everyone who plays this page.';cls+=' live'}
   }else if(STATUS==='local'){st=STANDALONE?'Scores are saved on this device. Use Copy my score to challenge friends.':'This device only. Open the shared page to compete with friends.';cls+=' warn'}
   else st='Connecting to the board...';
-  var guest=STATUS==='local'||(STATUS==='live'&&(!UID||CANW===false));
-  if(guest)h+='<div class="guest" role="note"><i aria-hidden="true">客</i><div><b>GUEST MODE</b><span>You can only see your own scores here, not your friends\u2019. Scores may not be saved when you close this page. To join the shared board and keep your scores, open the link and sign in to Claude.</span></div></div>';
-  else h+='<p class="'+cls+'">'+st+'</p>';
+  h+='<p class="'+cls+'">'+st+'</p>';
   h+='<ol class="rows">';
   if(B.tab==='players'){
     var pr=playerRows();
