@@ -596,6 +596,26 @@ ol.rows{list-style:none;margin:0;padding:0;border:1px solid var(--line);border-r
 #v-study.kq-on .kq{margin-top:0}
 .kq-quit{flex:none;background:none;border:1px solid var(--line);border-radius:999px;color:var(--dim);font-size:.66rem;font-weight:600;letter-spacing:.1em;padding:6px 10px}
 @media (prefers-reduced-motion:reduce){.kq-pod .blk,.kq-pod .who,.kq-pod .crown,.kq-pls span,.kq-res{animation:none}}
+
+/* ---- role picker ---- */
+.tools .snd{white-space:nowrap}
+@media (max-width:430px){.tools{gap:5px}.tools .snd{font-size:.58rem;letter-spacing:.05em;padding:6px 8px}.tools .snd.info{width:28px;height:28px;padding:0;font-size:.9rem}.snd.role b{display:none}}
+.snd.role{color:var(--paper-ink);background:var(--gold);border-color:var(--gold);font-weight:700}
+.snd.role b{font-family:var(--brush);font-weight:400;margin-right:4px}
+#news.rolep .bd p.lead{margin:12px 0 4px;color:var(--dim);font-size:.9rem;line-height:1.45}
+.rolec{display:grid;gap:10px;margin-top:12px}
+.rolec button{display:grid;grid-template-columns:52px 1fr;align-items:center;gap:12px;padding:14px;border-radius:14px;border:1px solid var(--line);background:var(--panel);color:var(--text);text-align:left}
+.rolec button i{font-style:normal;font-family:var(--brush);font-size:1.6rem;line-height:1;color:var(--red);text-align:center}
+.rolec button b{display:block;font-family:var(--display);font-weight:800;font-size:1.1rem;color:var(--gold-soft)}
+.rolec button span{display:block;margin-top:2px;font-size:.82rem;color:var(--dim);line-height:1.35}
+.rolec button em{display:inline-block;margin-left:8px;padding:1px 7px;border-radius:4px;background:var(--panel2);border:1px solid var(--line);font-style:normal;font-family:var(--body);font-size:.6rem;font-weight:700;letter-spacing:.1em;color:var(--dim);vertical-align:3px}
+.rolec button.on{border-color:var(--gold);background:linear-gradient(90deg,rgba(233,185,73,.16),var(--panel))}
+.rolec button.on em{background:var(--gold);color:var(--paper-ink);border-color:var(--gold)}
+.mtag{display:inline-block;align-self:center;margin-right:8px;padding:2px 7px;border-radius:4px;font-style:normal;font-family:var(--body);font-size:.6rem;font-weight:700;letter-spacing:.12em;color:#fff;background:#1F6FB2}
+.mtag.dn{background:var(--red)}
+.row .only{display:inline-block;margin-left:8px;padding:1px 6px;border-radius:4px;font-size:.58rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:#1F6FB2;vertical-align:2px}
+.row .only.dn{background:var(--red)}
+.row .pr.both{display:flex;flex-direction:column;align-items:flex-end;gap:2px}
 </style>
 
 </head>
@@ -606,7 +626,7 @@ ol.rows{list-style:none;margin:0;padding:0;border:1px solid var(--line);border-r
     <svg class="lantern" viewBox="0 0 44 96" aria-hidden="true"><line x1="22" y1="0" x2="22" y2="14" stroke="#E9B949" stroke-width="1.5"/><ellipse class="glow" cx="22" cy="44" rx="21" ry="28" fill="#FF5A3C" fill-opacity=".22"/><rect x="14" y="14" width="16" height="6" rx="1.5" fill="#E9B949"/><ellipse cx="22" cy="44" rx="18" ry="23" fill="#D72631"/><path d="M22 21v46M13 24c-5 12-5 28 0 40M31 24c5 12 5 28 0 40" stroke="#8E1219" stroke-width="1.4" fill="none"/><ellipse cx="16" cy="37" rx="3.5" ry="9" fill="#FFFFFF" fill-opacity=".2"/><rect x="14" y="66" width="16" height="6" rx="1.5" fill="#E9B949"/><line x1="22" y1="72" x2="22" y2="78" stroke="#E9B949" stroke-width="1.5"/><path d="M18 78h8l-1 16h-6z" fill="#D72631"/></svg>
     <div class="brand"><span class="seal" aria-hidden="true">点菜</span><h1>ORDER RUSH</h1><p>TAK SHING MENU TRAINER</p></div>
     <svg class="lantern lt-r" viewBox="0 0 44 96" aria-hidden="true"><line x1="22" y1="0" x2="22" y2="14" stroke="#E9B949" stroke-width="1.5"/><ellipse class="glow" cx="22" cy="44" rx="21" ry="28" fill="#FF5A3C" fill-opacity=".22"/><rect x="14" y="14" width="16" height="6" rx="1.5" fill="#E9B949"/><ellipse cx="22" cy="44" rx="18" ry="23" fill="#D72631"/><path d="M22 21v46M13 24c-5 12-5 28 0 40M31 24c5 12 5 28 0 40" stroke="#8E1219" stroke-width="1.4" fill="none"/><ellipse cx="16" cy="37" rx="3.5" ry="9" fill="#FFFFFF" fill-opacity=".2"/><rect x="14" y="66" width="16" height="6" rx="1.5" fill="#E9B949"/><line x1="22" y1="72" x2="22" y2="78" stroke="#E9B949" stroke-width="1.5"/><path d="M18 78h8l-1 16h-6z" fill="#D72631"/></svg>
-    <div class="tools"><button class="snd info" id="infoBtn" type="button" aria-haspopup="dialog" aria-label="About this site" title="About this site">i</button><button class="snd news" id="newsBtn" type="button" aria-haspopup="dialog">新 WHAT'S NEW<i class="dot" id="newsDot" hidden></i></button><button class="snd" id="snd" aria-pressed="true">SOUND ON</button></div>
+    <div class="tools"><button class="snd role" id="roleBtn" type="button" aria-haspopup="dialog" title="Change your role"></button><button class="snd info" id="infoBtn" type="button" aria-haspopup="dialog" aria-label="About this site" title="About this site">i</button><button class="snd news" id="newsBtn" type="button" aria-haspopup="dialog">新 WHAT'S NEW<i class="dot" id="newsDot" hidden></i></button><button class="snd" id="snd" aria-pressed="true">SOUND ON</button></div>
   </header>
   <button class="kingbar" id="kingBar" data-view="arcade" hidden></button>
   <nav class="views"><div class="in" role="tablist">
@@ -655,161 +675,28 @@ ol.rows{list-style:none;margin:0;padding:0;border:1px solid var(--line);border-r
 <script>
 (function(){
 function mk(rows,price,hot){return rows.map(function(r){return [r[0],r[1],[price],hot||r[2]||false]})}
-var S=[
-{id:'app',t:'Appetizers',items:[
- ['Small Eggroll (4)','BT ER',['6.95']],
- ['Homemade Egg Roll, pork (2)','ER',['6.95']],
- ['Spring Roll, fried vegetable (4)','Spring roll',['6.95']],
- ['Chicken Wing (8)','Chi wing',['12.25']],
- ['Crispy Wonton, chicken (10)','FWT',['7.95']],
- ['Cream Cheese Puff (10)','CCP',['7.95']],
- ['Sugar Roll (10)','Sugar roll',['7.95']],
- ['Fried Pot Sticker (8)','PS',['9.95']],
- ['Butterfly Shrimp (6)','Butt Shr',['9.95']],
- ['Half order Cream Cheese Puff (handwritten on menu)','1/2 CCP',['4.00']],
- ['Half order Egg Roll (handwritten on menu)','1/2 ER',['3.75']]
-]},
-{id:'soup',t:'Soup',cols:['Sm 16oz','Lg 32oz'],items:[
- ['Wonton Soup (Pork)','WT SP',['4.95','8.50']],
- ['Hot and Sour Soup (Pork)','H+S SP',['4.95','8.50']],
- ['Egg Drop Soup','ED SP',['4.95','8.50']],
- ['Chicken Noodle Soup','Chi nood SP',['4.95','8.50']],
- ['Chicken Rice Soup','Chi rice SP',['4.95','8.50']],
- ['Tak Shing Wonton Soup (one size)','T.S WT SP',['12.50']]
-]},
-{id:'cm',t:'Chow Mein (hard noodle)',cols:['Pt','Qt'],items:[
- ['Chicken Chow Mein','Chi cm',['7.75','12.50']],
- ['Pork Chow Mein','Pk cm',['7.25','11.95']],
- ['Mushroom Chow Mein','Mush cm',['7.75','12.50']],
- ['Chicken Mushroom Chow Mein','Chi mush cm',['7.75','12.50']],
- ['Subgum Chow Mein (cashew)','SUB cm',['7.75','12.50']],
- ['Chicken Subgum Chow Mein','Chi SUB cm',['7.75','12.50']],
- ['Beef Chow Mein','BF cm',['8.70','14.45']],
- ['Shrimp Chow Mein','Shr cm',['8.95','14.95']],
- ['Vegetable Chow Mein','Veg cm',['8.00','13.00']],
- ['House Special Chow Mein','Hse sp cm',['8.95','14.95']],
- ['Special Chicken Chow Mein','Sp chi cm',['8.70','14.45']],
- ['Special Pork Chow Mein','Sp pk cm',['8.70','14.45']],
- ['Special Beef Chow Mein','Sp BF cm',['8.95','14.95']],
- ['Special Shrimp Chow Mein','Sp shr cm',['8.95','14.95']],
- ['Special Vegetable Chow Mein','Sp veg cm',['8.00','13.00']]
-]},
-{id:'lm',t:'Lo Mein / Rice Noodles',note:'Lo mein is the soft noodle. Rice noodles are thin.',items:[
- ['Chicken Lo Mein','Chi lom',['15.95']],
- ['Pork Lo Mein','Pk lom',['15.95']],
- ['Subgum Lo Mein (pork & chicken)','Sub lom',['15.95']],
- ['Beef Lo Mein','BF lom',['15.95']],
- ['Shrimp Lo Mein','Shr lom',['16.45']],
- ['Vegetable Lo Mein','Veg lom',['14.95']],
- ['House Lo Mein','Hse lom',['16.45']],
- ['Chicken Rice Noodles','Chi rice nood',['15.95']],
- ['Shrimp Rice Noodles','Shr rice nood',['16.45']],
- ['Singapore Rice Noodles','Sing rice nood',['16.45']]
-]},
-{id:'fr',t:'Fried Rice',items:[
- ['Chicken Fried Rice','Chi FR',['13.50']],
- ['Pork Fried Rice','Pk FR',['13.50']],
- ['Shrimp Fried Rice','Shr FR',['13.95']],
- ['Beef Fried Rice','BF FR',['13.50']],
- ['Vegetable Fried Rice','Veg FR',['12.50']],
- ['House Fried Rice','Hse FR',['13.95']],
- ['Hawaiian Fried Rice (customers may say Special Fried Rice; HAW also used)','Sp FR',['13.95']]
-]},
-{id:'cant',t:'Special Cantonese Chow Mein',note:'Pan-fried noodle.',items:[
- ['Chicken Cantonese Chow Mein','Chi cant cm',['18.50']],
- ['B.B.Q. Pork Cantonese Chow Mein','Pk cant cm',['18.50']],
- ['Beef Cantonese Chow Mein','BF cant cm',['19.50']],
- ['Shrimp Cantonese Chow Mein','Shr cant cm',['20.50']],
- ['Vegetable Cantonese Chow Mein','Veg cant cm',['17.95']],
- ['House Cantonese Chow Mein','Hse cant cm',['20.50']]
-]},
-{id:'combo',t:'Veggie / Meat Combo Dishes',items:[
- ['House Green Bean (shrimp, chicken, pork, beef)','',['16.45']],
- ['Happy Family (shrimp, chicken, pork, beef)','',['16.45']],
- ['Green Bean','G.B.',['14.50']],
- ['Orange Chicken','Org chi',['16.45']],
- ['Buddha Delight (handwritten on menu)','',['14.50']]
-]},
-{id:'ss',t:'Sweet and Sour',items:[
- ['Sweet & Sour Chicken','S/S chi',['15.95']],
- ['Sweet & Sour Pork','S/S pk',['15.95']],
- ['Sweet & Sour Shrimp','S/S shr',['16.45']]
-]},
-{id:'chi',t:'Chicken',note:'Every dish in this section is $15.25.',items:mk([
- ['Chicken with Peapods','Chi w/p.p'],['Chicken with Broccoli','Chi w/Bro'],
- ['Chicken with Chinese Vegetable','Chi w/veg'],['Chicken Cashew','Chi cash'],
- ['Chicken Almond Ding','Chi AL'],['Hong Shew Chicken','H.S chi'],
- ['Moo Goo Gai Pan','MGGP'],['Pineapple Chicken','Pino chi'],
- ['Lemon Chicken','Lem chi'],['Curry Chicken','Curry chi',true],
- ['Chicken with Green Bean','Chi w/g.bean']],'15.25')},
-{id:'pork',t:'Pork',note:'Every dish in this section is $15.25.',items:mk([
- ['Pork with Peapods','Pk w/p.p'],['Pork with Broccoli','Pk w/Bro'],
- ['Pork with Chinese Vegetable','Pk w/veg'],['Pork Cashew','Pk cash'],
- ['Pork Almond Ding','Pk AL'],['Hong Shew Pork','H.S pk'],
- ['B.B.Q. Pork with Peppers and Onions',''],['Pork with Green Bean','Pk w/g.bean']],'15.25')},
-{id:'beef',t:'Beef',note:'Every dish in this section is $15.75.',items:mk([
- ['Beef with Peapods','BF w/p.p'],['Beef with Broccoli','BF w/Bro'],
- ['Beef with Chinese Vegetable','BF w/veg'],['Beef Cashew','BF cash'],
- ['Beef with Green Pepper, Onion','BF w/pep+oni'],['Curry Beef','Curry BF',true],
- ['Beef with Green Bean','BF w/g.bean'],['Beef Almond Ding','BF AL']],'15.75')},
-{id:'shr',t:'Shrimp',note:'Every dish in this section is $16.45.',items:mk([
- ['Shrimp with Peapods','Shr w/p.p'],['Shrimp with Broccoli','Shr w/Bro'],
- ['Shrimp with Chinese Vegetable','Shr w/veg'],['Shrimp Cashew','Shr cash'],
- ['Shrimp Almond Ding','Shr AL'],['Hong Shew Shrimp','H.S shr'],
- ['Tung Ting Shrimp','T.T shr'],['Curry Shrimp','Curry shr',true],
- ['Shrimp with Green Bean','Shr w/g.bean']],'16.45')},
-{id:'sze',t:'Szechuan Cuisines',note:'All hot and spicy. Chicken and pork $15.75, beef $15.95, shrimp $16.45.',items:
- mk([['Szechuan Chicken','Sze chi'],['Sesame Chicken','Ses chi'],['Hunan Chicken','Hun chi'],
- ['Kung Po Chicken','KP chi'],['Sa-dae Chicken','Sa-dae chi'],['Garlic Chicken','Gar chi'],
- ['Szechuan Pork','Sze pk'],['Sesame Pork','Ses pk'],['Hunan Pork','Hun pk'],
- ['Kung Po Pork','KP pk'],['Sa-dae Pork','Sa-dae pk'],['Garlic Pork','Gar pk'],
- ['Twice Cooked Pork','Twice cook pk']],'15.75',true)
- .concat(mk([['Szechuan Beef','Sze BF'],['Hunan Beef','Hun BF'],['Kung Po Beef','KP BF'],
- ['Garlic Beef','Gar BF'],['Mongolian Beef','Mong BF']],'15.95',true))
- .concat(mk([['Szechuan Shrimp','Sze shr'],['Kung Po Shrimp','KP shr'],['Sa-dae Shrimp','Sa-dae shr'],
- ['Garlic Shrimp','Gar shr'],['Hunan Shrimp','Hun shr']],'16.45',true))},
-{id:'efy',t:'Egg Foo Young',items:[
- ['Chicken Egg Foo Young','Chi EFY',['12.95']],
- ['Pork Egg Foo Young','Pk EFY',['12.95']],
- ['Shrimp Egg Foo Young','Shr EFY',['13.25']],
- ['Vegetable Egg Foo Young','Veg EFY',['12.45']]
-]},
-{id:'sc',t:'Special Combinations (A–Z)',note:'Each comes with fried rice. Lunch Special is $9.50, 11 am–2 pm, Tuesday to Friday only. Add an egg roll (ER) to any combo for +$2, except combo A, which already includes one.',items:[
- ['Chicken Chow Mein, Egg Roll, Fried Rice','A',['11.50']],
- ['Chicken Chow Mein, Egg Foo Young, Fried Rice','B',['11.50']],
- ['Chicken Chow Mein, Butterfly Shrimp, Fried Rice','C',['11.95']],
- ['Chicken Chow Mein, Chicken Wings, Fried Rice','D',['11.50']],
- ['BBQ Pork, Pork Chow Mein, Fried Rice','E',['11.50']],
- ['Moo Goo Gai Pan, Cream Cheese Puffs, Fried Rice','F',['11.95']],
- ['Chicken Cashew, Cream Cheese Puffs, Fried Rice','G',['11.95']],
- ['Chicken with Broccoli, Cream Cheese Puffs, Fried Rice','H',['11.95']],
- ['Kung Po Chicken, Cream Cheese Puffs, Fried Rice','I',['11.95'],true],
- ['Szechuan Chicken, Cream Cheese Puffs, Fried Rice','J',['11.95'],true],
- ['Sa-dae Chicken, Cream Cheese Puffs, Fried Rice','K',['11.95'],true],
- ['BBQ Pork with Peapods, Fried Wontons, Fried Rice','L',['11.95']],
- ['Tung Ting Shrimp, Fried Wontons, Fried Rice','M',['12.50']],
- ['Beef with Broccoli, Fried Wontons, Fried Rice','N',['11.95']],
- ['Beef with Peapods, Fried Wontons, Fried Rice','O',['11.95']],
- ['Sa-dae Shrimp, Fried Wontons, Fried Rice','P',['12.50'],true],
- ['Pork Lo Mein, Cream Cheese Puffs, Fried Rice','Q',['11.95']],
- ['Subgum Lo Mein, Cream Cheese Puffs, Fried Rice','R',['11.95']],
- ['Chicken Lo Mein, Cream Cheese Puffs, Fried Rice','S',['11.95']],
- ['Vegetable Lo Mein, Cream Cheese Puffs, Fried Rice','T',['11.95']],
- ['Chicken with Vegetable, Cream Cheese Puffs, Fried Rice','U',['11.95']],
- ['Sweet & Sour Pork, Fried Wonton, Fried Rice','V',['11.95']],
- ['Sweet & Sour Chicken, Cream Cheese Puffs, Fried Rice','W',['11.95']],
- ['Lemon Chicken, Cream Cheese Puffs, Fried Rice','X',['11.95']],
- ['Chinese Vegetables, Cream Cheese Puffs, Fried Rice','Y',['11.50']],
- ['Sesame Chicken, Cream Cheese Puffs, Fried Rice','Z',['12.50'],true],
- ['Orange Chicken, Cream Cheese Puffs, Fried Rice','xZ',['12.50'],true]
-]},
-{id:'fam',t:'Family Dinner',note:'Take-out only, $52.95 each. White rice not included. Chicken Chow Mein is hard noodle.',items:[
- ['Egg Rolls (4), Sesame Chicken, Chicken Fried Rice, Chicken Chow Mein (2)','Dinner A',['52.95']],
- ['Chicken Wing (12), Sweet & Sour Chicken, Chicken Fried Rice, Chicken Chow Mein (2)','Dinner B',['52.95']],
- ['Cream Cheese Puff (20), Sesame Chicken, Pork Fried Rice, Chicken Chow Mein (2)','Dinner C',['52.95']]
-]}
-];
+var RAW=[{"id": "app","t": "Appetizers","items": [["Small Eggroll (4)","BT ER",["6.95"],0,["7.95"]],["Homemade Egg Roll, pork (2)","ER",["6.95"],0,["7.95"]],["Spring Roll, fried vegetable (4)","Spring roll",["6.95"],0,null],["Chicken Wing (8)","Chi wing",["12.25"],0,["13.25"]],["Crispy Wonton, chicken (10)","FWT",["7.95"],0,["8.95"]],["Cream Cheese Puff (10)","CCP",["7.95"],0,["8.95"]],["Sugar Roll (10)","Sugar roll",["7.95"],0,["8.95"]],["Fried Pot Sticker (8)","PS",["9.95"],0,["10.95"]],["Butterfly Shrimp (6)","Butt Shr",["9.95"],0,["10.95"]],["Half order Cream Cheese Puff (handwritten on menu)","1/2 CCP",["4.00"],0,null],["Half order Egg Roll (handwritten on menu)","1/2 ER",["3.75"],0,null]]},{"id": "soup","t": "Soup","items": [["Wonton Soup (Pork)","WT SP",["4.95","8.50"],0,["5.95","9.50"]],["Hot and Sour Soup (Pork)","H+S SP",["4.95","8.50"],1,["5.95","9.50"]],["Egg Drop Soup","ED SP",["4.95","8.50"],0,null],["Chicken Noodle Soup","Chi nood SP",["4.95","8.50"],0,["5.95","9.50"]],["Chicken Rice Soup","Chi rice SP",["4.95","8.50"],0,["5.95","9.50"]],["Tak Shing Wonton Soup (one size)","T.S WT SP",["12.50"],0,["13.50"]]],"cols": ["Sm 16oz","Lg 32oz"],"dcols": ["Sm","Lg"]},{"id": "cm","t": "Chow Mein (hard noodle)","items": [["Chicken Chow Mein","Chi cm",["7.75","12.50"],0,["13.50"]],["Pork Chow Mein","Pk cm",["7.25","11.95"],0,["12.95"]],["Mushroom Chow Mein","Mush cm",["7.75","12.50"],0,["13.50"]],["Chicken Mushroom Chow Mein","Chi mush cm",["7.75","12.50"],0,["13.50"]],["Subgum Chow Mein (cashew)","SUB cm",["7.75","12.50"],0,["13.50"]],["Chicken Subgum Chow Mein","Chi SUB cm",["7.75","12.50"],0,["13.50"]],["Beef Chow Mein","BF cm",["8.70","14.45"],0,["15.45"]],["Shrimp Chow Mein","Shr cm",["8.95","14.95"],0,["15.95"]],["Vegetable Chow Mein","Veg cm",["8.00","13.00"],0,["14.00"]],["Tak Shing Chow Mein (white meat chicken)","",null,0,["15.45"]],["House Special Chow Mein","Hse sp cm",["8.95","14.95"],0,["15.95"]],["Special Chicken Chow Mein","Sp chi cm",["8.70","14.45"],0,["15.45"]],["Special Pork Chow Mein","Sp pk cm",["8.70","14.45"],0,["15.45"]],["Special Beef Chow Mein","Sp BF cm",["8.95","14.95"],0,["15.95"]],["Special Shrimp Chow Mein","Sp shr cm",["8.95","14.95"],0,["15.95"]],["Special Vegetable Chow Mein","Sp veg cm",["8.00","13.00"],0,["14.00"]]],"cols": ["Pt","Qt"],"dnote": "Dine-in chow mein comes in one size."},{"id": "lm","t": "Lo Mein / Rice Noodles","items": [["Chicken Lo Mein","Chi lom",["15.95"],0,["16.95"]],["Pork Lo Mein","Pk lom",["15.95"],0,["16.95"]],["Subgum Lo Mein (pork & chicken)","Sub lom",["15.95"],0,null],["Beef Lo Mein","BF lom",["15.95"],0,["16.95"]],["Shrimp Lo Mein","Shr lom",["16.45"],0,["17.45"]],["Vegetable Lo Mein","Veg lom",["14.95"],0,["15.95"]],["House Lo Mein","Hse lom",["16.45"],0,["17.45"]],["Chicken Rice Noodles","Chi rice nood",["15.95"],0,["16.95"]],["Pork Rice Noodles","",null,0,["16.95"]],["Beef Rice Noodles","",null,0,["16.95"]],["Shrimp Rice Noodles","Shr rice nood",["16.45"],0,["17.45"]],["Vegetable Rice Noodles","",null,0,["15.95"]],["House Rice Noodles (all meat)","",null,0,["17.45"]],["Singapore Rice Noodles","Sing rice nood",["16.45"],1,["17.45"]]],"note": "Lo mein is the soft noodle. Rice noodles are thin.","dnote": "Lo mein is the soft noodle. Rice noodles are thin."},{"id": "fr","t": "Fried Rice","items": [["Chicken Fried Rice","Chi FR",["13.50"],0,["14.50"]],["Pork Fried Rice","Pk FR",["13.50"],0,["14.50"]],["Shrimp Fried Rice","Shr FR",["13.95"],0,["14.95"]],["Beef Fried Rice","BF FR",["13.50"],0,["14.50"]],["Vegetable Fried Rice","Veg FR",["12.50"],0,["13.50"]],["House Fried Rice","Hse FR",["13.95"],0,["14.95"]],["Hawaiian Fried Rice (customers may say Special Fried Rice; HAW also used)","Sp FR",["13.95"],0,["14.95"]]]},{"id": "cant","t": "Special Cantonese Chow Mein","items": [["Chicken Cantonese Chow Mein","Chi cant cm",["18.50"],0,["19.50"]],["B.B.Q. Pork Cantonese Chow Mein","Pk cant cm",["18.50"],0,["19.50"]],["Beef Cantonese Chow Mein","BF cant cm",["19.50"],0,["21.50"]],["Shrimp Cantonese Chow Mein","Shr cant cm",["20.50"],0,["21.50"]],["Vegetable Cantonese Chow Mein","Veg cant cm",["17.95"],0,null],["House Cantonese Chow Mein","Hse cant cm",["20.50"],0,["21.50"]]],"note": "Pan-fried noodle.","dnote": "Pan-fried noodle."},{"id": "combo","t": "Veggie / Meat Combo Dishes","items": [["House Green Bean (shrimp, chicken, pork, beef)","",["16.45"],0,["17.45"]],["Happy Family (shrimp, chicken, pork, beef)","",["16.45"],0,["17.45"]],["Gumbo Wonton","",null,0,["17.45"]],["Subgum Wonton","",null,0,["17.45"]],["House Hot Pepper (black bean sauce)","",null,0,["17.45"]],["Green Bean","G.B.",["14.50"],0,["15.50"]],["Buddha Delight","",["14.50"],0,["15.50"]],["Chinese Vegetable (vegetarian)","",null,0,["15.50"]],["Kung Po Vegetable","",null,1,["15.50"]],["Sweet and Sour Tofu","",null,0,["15.50"]],["Sesame Tofu","",null,0,["15.50"]],["Orange Chicken","Org chi",["16.45"],0,["16.75"]]],"dnote": "House specialties (with big shrimp) $17.45. Vegetarian dishes $15.50. Orange chicken is $16.75 dine-in.","dt": "House Specialties & Vegetarian","at": "Combo, House Specialties & Vegetarian"},{"id": "ss","t": "Sweet and Sour","items": [["Sweet & Sour Chicken","S/S chi",["15.95"],0,["16.95"]],["Sweet & Sour Pork","S/S pk",["15.95"],0,["16.95"]],["Sweet & Sour Shrimp","S/S shr",["16.45"],0,["17.45"]]]},{"id": "lem","t": "Lemon Sauce Dishes","items": [["Lemon Chicken (lemon sauce)","Lem chi",null,0,["16.95"]],["Lemon Pork","",null,0,["16.95"]],["Lemon Shrimp","",null,0,["17.45"]]],"dnote": "Chicken or pork $16.95, shrimp $17.45."},{"id": "chi","t": "Chicken","items": [["Chicken with Peapods","Chi w/p.p",["15.25"],0,["16.25"]],["Chicken with Broccoli","Chi w/Bro",["15.25"],0,["16.25"]],["Chicken with Chinese Vegetable","Chi w/veg",["15.25"],0,["16.25"]],["Chicken Cashew","Chi cash",["15.25"],0,["16.25"]],["Chicken Almond Ding","Chi AL",["15.25"],0,["16.25"]],["Hong Shew Chicken","H.S chi",["15.25"],0,["16.25"]],["Moo Goo Gai Pan","MGGP",["15.25"],0,["16.25"]],["Pineapple Chicken","Pino chi",["15.25"],0,["16.25"]],["Lemon Chicken","Lem chi",["15.25"],0,null],["Curry Chicken","Curry chi",["15.25"],1,["16.25"]],["Chicken with Green Bean","Chi w/g.bean",["15.25"],0,["16.25"]],["Hot Pepper Chicken (black bean sauce)","",null,0,["16.25"]]],"note": "Every dish in this section is $15.25.","dnote": "Every dish in this section is $16.25."},{"id": "pork","t": "Pork","items": [["Pork with Peapods","Pk w/p.p",["15.25"],0,["16.25"]],["Pork with Broccoli","Pk w/Bro",["15.25"],0,["16.25"]],["Pork with Chinese Vegetable","Pk w/veg",["15.25"],0,["16.25"]],["Pork Cashew","Pk cash",["15.25"],0,["16.25"]],["Pork Almond Ding","Pk AL",["15.25"],0,["16.25"]],["Hong Shew Pork","H.S pk",["15.25"],0,["16.25"]],["B.B.Q. Pork with Peppers and Onions","",["15.25"],0,null],["Pork with Green Bean","Pk w/g.bean",["15.25"],0,["16.25"]],["Curry Pork","",null,1,["16.25"]],["Hot Pepper Pork (black bean sauce)","",null,0,["16.25"]]],"note": "Every dish in this section is $15.25.","dnote": "Every dish in this section is $16.25."},{"id": "beef","t": "Beef","items": [["Beef with Peapods","BF w/p.p",["15.75"],0,null],["Beef with Broccoli","BF w/Bro",["15.75"],0,["16.75"]],["Beef with Chinese Vegetable","BF w/veg",["15.75"],0,["16.75"]],["Beef Cashew","BF cash",["15.75"],0,["16.75"]],["Beef with Green Pepper, Onion","BF w/pep+oni",["15.75"],0,null],["Curry Beef","Curry BF",["15.75"],1,["16.75"]],["Beef with Green Bean","BF w/g.bean",["15.75"],0,["16.75"]],["Beef Almond Ding","BF AL",["15.75"],0,["16.75"]],["Hong Shew Beef","",null,0,["16.75"]],["Hot Pepper Beef (black bean sauce)","",null,0,["16.75"]],["Beef with Tomato and Pepper","",null,0,["16.75"]],["Beef with Bean Sprout","",null,0,["16.75"]]],"note": "Every dish in this section is $15.75.","dnote": "Every dish in this section is $16.75."},{"id": "shr","t": "Shrimp","items": [["Shrimp with Peapods","Shr w/p.p",["16.45"],0,null],["Shrimp with Broccoli","Shr w/Bro",["16.45"],0,["17.45"]],["Shrimp with Chinese Vegetable","Shr w/veg",["16.45"],0,["17.45"]],["Shrimp Cashew","Shr cash",["16.45"],0,["17.45"]],["Shrimp Almond Ding","Shr AL",["16.45"],0,["17.45"]],["Hong Shew Shrimp","H.S shr",["16.45"],0,["17.45"]],["Tung Ting Shrimp","T.T shr",["16.45"],0,["17.45"]],["Curry Shrimp","Curry shr",["16.45"],1,["17.45"]],["Shrimp with Green Bean","Shr w/g.bean",["16.45"],0,["17.45"]],["Hot Pepper Shrimp (black bean sauce)","",null,0,["17.45"]],["Shrimp with Bean Sprout","",null,0,["17.45"]]],"note": "Every dish in this section is $16.45.","dnote": "Every dish in this section is $17.45. Dine-in shrimp dishes use big shrimp."},{"id": "sze","t": "Szechuan Cuisines","items": [["Szechuan Chicken","Sze chi",["15.75"],1,["16.75"]],["Sesame Chicken","Ses chi",["15.75"],1,["16.75"]],["Hunan Chicken","Hun chi",["15.75"],1,["16.75"]],["Kung Po Chicken","KP chi",["15.75"],1,["16.75"]],["Sa-dae Chicken","Sa-dae chi",["15.75"],1,["16.75"]],["Garlic Chicken","Gar chi",["15.75"],1,null],["Mongolian Chicken","",null,1,["16.75"]],["Szechuan Pork","Sze pk",["15.75"],1,["16.75"]],["Sesame Pork","Ses pk",["15.75"],1,["16.75"]],["Hunan Pork","Hun pk",["15.75"],1,["16.75"]],["Kung Po Pork","KP pk",["15.75"],1,["16.75"]],["Sa-dae Pork","Sa-dae pk",["15.75"],1,["16.75"]],["Garlic Pork","Gar pk",["15.75"],1,null],["Twice Cooked Pork","Twice cook pk",["15.75"],1,null],["Mongolian Pork","",null,1,["16.75"]],["Orange Pork","",null,1,["16.75"]],["Szechuan Beef","Sze BF",["15.95"],1,["18.00"]],["Hunan Beef","Hun BF",["15.95"],1,["18.00"]],["Kung Po Beef","KP BF",["15.95"],1,["18.00"]],["Garlic Beef","Gar BF",["15.95"],1,null],["Mongolian Beef","Mong BF",["15.95"],1,["18.00"]],["Sa-dae Beef","",null,1,["18.00"]],["Szechuan Shrimp","Sze shr",["16.45"],1,["18.00"]],["Kung Po Shrimp","KP shr",["16.45"],1,["18.00"]],["Sa-dae Shrimp","Sa-dae shr",["16.45"],1,["18.00"]],["Garlic Shrimp","Gar shr",["16.45"],1,null],["Hunan Shrimp","Hun shr",["16.45"],1,["18.00"]],["Mongolian Shrimp","",null,1,["18.00"]],["Sesame Shrimp","",null,1,["18.00"]],["Orange Shrimp","",null,1,["18.00"]]],"note": "All hot and spicy. Chicken and pork $15.75, beef $15.95, shrimp $16.45.","dnote": "Mild to Insane Hot (Insane Hot cannot be returned). Chicken and pork $16.75, beef and big shrimp $18."},{"id": "szh","t": "Szechuan House (all meat)","items": [["Szechuan House Kung Po","",null,1,["18.00"]],["Szechuan House Garlic","",null,1,["18.00"]],["Szechuan House Szechuan","",null,1,["18.00"]],["Szechuan House Hunan","",null,1,["18.00"]],["Szechuan House Curry","",null,1,["18.00"]]],"dnote": "Chicken, pork, beef and shrimp together. Every one is $18."},{"id": "sp","t": "Salt & Pepper / Fish","items": [["Salt & Pepper Chicken Wings (8)","",null,0,["13.75"]],["Salt & Pepper Tofu","",null,0,["15.50"]],["Salt & Pepper Shrimp (shell, prep 24 hours)","",null,0,["17.45"]],["Sweet and Sour Fish (order 24 hours ahead)","",null,0,["21.00"]],["Salt and Pepper Fish (order 24 hours ahead)","",null,0,["21.00"]]],"dnote": "Fish must be ordered 24 hours ahead and may not be available on some holidays."},{"id": "efy","t": "Egg Foo Young","items": [["Chicken Egg Foo Young","Chi EFY",["12.95"],0,["13.95"]],["Pork Egg Foo Young","Pk EFY",["12.95"],0,["13.95"]],["Shrimp Egg Foo Young","Shr EFY",["13.25"],0,["14.25"]],["Vegetable Egg Foo Young","Veg EFY",["12.45"],0,["13.45"]]]},{"id": "sc","t": "Special Combinations (A–Z)","items": [["Chicken Chow Mein, Egg Roll, Fried Rice","A",["11.50"],0,["12.50"]],["Chicken Chow Mein, Egg Foo Young, Fried Rice","B",["11.50"],0,["12.50"]],["Chicken Chow Mein, Butterfly Shrimp, Fried Rice","C",["11.95"],0,["12.95"]],["Chicken Chow Mein, Chicken Wings, Fried Rice","D",["11.50"],0,["12.50"]],["BBQ Pork, Pork Chow Mein, Fried Rice","E",["11.50"],0,["12.50"]],["Moo Goo Gai Pan, Cream Cheese Puffs, Fried Rice","F",["11.95"],0,["12.95"]],["Chicken Cashew, Cream Cheese Puffs, Fried Rice","G",["11.95"],0,["12.95"]],["Chicken with Broccoli, Cream Cheese Puffs, Fried Rice","H",["11.95"],0,["12.95"]],["Kung Po Chicken, Cream Cheese Puffs, Fried Rice","I",["11.95"],1,["12.95"]],["Szechuan Chicken, Cream Cheese Puffs, Fried Rice","J",["11.95"],1,["12.95"]],["Sa-dae Chicken, Cream Cheese Puffs, Fried Rice","K",["11.95"],1,["12.95"]],["BBQ Pork with Peapods, Fried Wontons, Fried Rice","L",["11.95"],0,["12.95"]],["Tung Ting Shrimp, Fried Wontons, Fried Rice","M",["12.50"],0,["13.50"]],["Beef with Broccoli, Fried Wontons, Fried Rice","N",["11.95"],0,["12.95"]],["Beef with Peapods, Fried Wontons, Fried Rice","O",["11.95"],0,["12.95"]],["Sa-dae Shrimp, Fried Wontons, Fried Rice","P",["12.50"],1,["13.50"]],["Pork Lo Mein, Cream Cheese Puffs, Fried Rice","Q",["11.95"],0,["12.95"]],["Subgum Lo Mein, Cream Cheese Puffs, Fried Rice","R",["11.95"],0,["12.95"]],["Chicken Lo Mein, Cream Cheese Puffs, Fried Rice","S",["11.95"],0,["12.95"]],["Vegetable Lo Mein, Cream Cheese Puffs, Fried Rice","T",["11.95"],0,["12.95"]],["Chicken with Vegetable, Cream Cheese Puffs, Fried Rice","U",["11.95"],0,["12.95"]],["Sweet & Sour Pork, Fried Wonton, Fried Rice","V",["11.95"],0,["12.95"]],["Sweet & Sour Chicken, Cream Cheese Puffs, Fried Rice","W",["11.95"],0,["12.95"]],["Lemon Chicken, Cream Cheese Puffs, Fried Rice","X",["11.95"],0,["12.95"]],["Chinese Vegetables, Cream Cheese Puffs, Fried Rice","Y",["11.50"],0,["13.50"]],["Sesame Chicken, Cream Cheese Puffs, Fried Rice","Z",["12.50"],1,["13.50"]],["Orange Chicken, Cream Cheese Puffs, Fried Rice","xZ",["12.50"],1,["13.50"]],["(4) Chicken Wings with Double Fried Rice","CC",null,0,["12.95"]]],"note": "Each comes with fried rice. Lunch Special is $9.50, 11 am–2 pm, Tuesday to Friday only. Add an egg roll (ER) to any combo for +$2, except combo A, which already includes one.","dnote": "Comes with vegetable fried rice (can only change to white rice, not noodles). Lunch Special is $10.50, 11 am–2 pm, Tuesday to Friday only."},{"id": "fam","t": "Family Dinner","items": [["Egg Rolls (4), Sesame Chicken, Chicken Fried Rice, Chicken Chow Mein (2)","Dinner A",["52.95"],0,null],["Chicken Wing (12), Sweet & Sour Chicken, Chicken Fried Rice, Chicken Chow Mein (2)","Dinner B",["52.95"],0,null],["Cream Cheese Puff (20), Sesame Chicken, Pork Fried Rice, Chicken Chow Mein (2)","Dinner C",["52.95"],0,null]],"note": "Take-out only, $52.95 each. White rice not included. Chicken Chow Mein is hard noodle."}];
 
+/* role: to = cashier (takeout), dn = server (dine-in), all = all-rounder (both) */
+var K_ROLE='ts_rush_role_v1';
+var ROLE=(function(){var r=null;try{r=localStorage.getItem(K_ROLE)}catch(e){}return r==='to'||r==='dn'||r==='all'?r:''})();
+var ROLE_SET=!!ROLE;if(!ROLE)ROLE='all';
+var ROLES={to:{n:'Cashier',cn:'收银',m:'Takeout',d:'Takeout prices only. You take phone and counter orders.'},
+  dn:{n:'Server',cn:'服务',m:'Dine-in',d:'Dine-in prices only. You take orders at the tables.'},
+  all:{n:'All-rounder',cn:'全能',m:'Takeout + dine-in',d:'Both menus. Every price question tells you if it wants takeout or dine-in.'}};
+function mkv(r,m,si,ii,cols){var a=[r[0],r[1],(m==='dn'?r[4]:r[2]).slice(),!!r[3]];a.m=m;a.cols=cols||null;a.si=si;a.ii=ii;return a}
+var S=[];
+RAW.forEach(function(sec,si){
+  var items=[];
+  sec.items.forEach(function(r,ii){
+    var tk=ROLE!=='dn'&&r[2],dn=ROLE!=='to'&&r[4];
+    if(tk)items.push(mkv(r,'to',si,ii,sec.cols));
+    if(dn){var v=mkv(r,'dn',si,ii,sec.dcols);if(tk)v.dup=true;items.push(v)}
+  });
+  if(!items.length)return;
+  var note=ROLE==='to'?sec.note:ROLE==='dn'?sec.dnote:[sec.note?'Takeout: '+sec.note:'',sec.dnote?'Dine-in: '+sec.dnote:''].filter(Boolean).join(' ');
+  S.push({id:sec.id,t:ROLE==='dn'?(sec.dt||sec.t):ROLE==='all'?(sec.at||sec.t):sec.t,note:note||'',items:items,cols:ROLE==='dn'?sec.dcols:sec.cols});
+});
 
 var $=function(s){return document.querySelector(s)};
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;')}
@@ -821,7 +708,18 @@ function pad(n,l){n=String(n);while(n.length<l)n='0'+n;return n}
 var REDUCED=false;try{REDUCED=window.matchMedia('(prefers-reduced-motion: reduce)').matches}catch(e){}
 
 var ITEMS=[];S.forEach(function(sec){sec.items.forEach(function(it){ITEMS.push({sec:sec,it:it})})});
-var PRICES=[];ITEMS.forEach(function(c){c.it[2].forEach(function(p){if(PRICES.indexOf(p)<0)PRICES.push(p)})});
+var PRICES=[],PRICES_M={to:[],dn:[]};ITEMS.forEach(function(c){c.it[2].forEach(function(p){if(PRICES.indexOf(p)<0)PRICES.push(p);var a=PRICES_M[c.it.m];if(a.indexOf(p)<0)a.push(p)})});
+var SIZEN={'Pt':'Pint','Qt':'Quart','Sm 16oz':'Small','Lg 32oz':'Large','Sm':'Small','Lg':'Large'};
+function colsOf(it,sec){return (it&&it.cols)||(sec&&sec.cols)||[]}
+function sizeName(sec,i,it){var c=colsOf(it,sec)[i]||'';return SIZEN[c]||c}
+function mWord(it){return it&&it.m==='dn'?'Dine-in':'Takeout'}
+function priceLabel(it,sec,idx,force){var p=[];if(ROLE==='all'||force)p.push(mWord(it));if(it[2].length>1)p.push(sizeName(sec,idx,it));return p.join(', ')}
+function textPool(it){return !it.dup}
+function askTag(it,ask){var s=esc(ask),m=/ \((takeout|dine-in)(, [^)]*)?\)$/i.exec(ask);if(!m)return s;return '<em class="mtag '+(m[1].toLowerCase()==='dine-in'?'dn':'to')+'">'+m[1].toUpperCase()+'</em>'+esc(ask.slice(0,m.index))+(m[2]?' ('+esc(m[2].slice(2))+')':'')}
+function tprice(sec,it){
+  var tag=ROLE==='all'?'<em class="mtag '+it.m+'">'+(it.m==='dn'?'DINE-IN':'TAKEOUT')+'</em>':'';
+  return '<div class="tprice">'+tag+(it[2].length===1?'<span>$'+it[2][0]+'</span>':it[2].map(function(p,i){return '<span><small>'+esc(sizeName(sec,i,it))+'</small>$'+p+'</span>'}).join(''))+'</div>';
+}
 
 /* storage (per device conveniences) */
 function lsGet(k){try{return localStorage.getItem(k)}catch(e){return null}}
@@ -1073,21 +971,25 @@ function rooPB(name,score,prev){
 /* ---------- what's new ---------- */
 var K_SEEN='ts_rush_news_v1';
 var NEWS=[
- {id:'u17',h:'LATEST',items:[
+ {id:'u18',h:'LATEST',items:[
+  ['🍽️','Takeout and dine-in prices','Takeout and dine-in now have their own prices, and dine-in has its own dishes. Pick Server, Cashier or All-rounder and every price, quiz and pattern matches your job.'],
+  ['👥','A leaderboard for each role','Servers, cashiers and all-rounders each get their own board and their own Rooster King.']
+ ]},
+ {id:'u17',h:'RECENT',items:[
   ['💲','New menu prices','Every price now matches the updated Tak Shing menu, including the $9.50 lunch special, the $52.95 family dinner and Buddha Delight ($14.50). Flashcards, quizzes and the price patterns all use the new prices.']
  ]},
- {id:'u16',h:'RECENT',items:[
+ {id:'u16',h:'EARLIER',items:[
   ['🎯','Quiz Battle','New in Study: a Kahoot-style quiz with four colored answers, where faster answers score more. Play solo, or host a live game with a PIN and friends join on their phones, with a scoreboard after every question and a podium at the end.'],
   ['🌐','Now a real website','Order Rush now has its own website, so anyone with the link can play. No Claude account or sign-in needed.'],
   ['🏆','Live leaderboard for everyone','Everyone\u2019s scores now show up on the same board, live, on any phone, iPad or laptop.']
  ]},
- {id:'u14',h:'EARLIER',items:[
+ {id:'u14',h:'OLDER',items:[
   ['📱','Fits your screen','The layout now adapts to iPhone, iPad and laptop. Bigger screens get columns for the menu, and the arcade shows the leaderboard beside the game.'],
   ['👑','Rooster King 鸡王','The #1 player gets a crown on the leaderboard and a gold banner on every tab showing how long they have held the top spot.'],
   ['🐓','Two rooster celebrations','A small crowing rooster for your own personal best, and a full show with fireworks, a crown and a gong when you set the all-time high score.'],
   ['⚔️','Dethroned alert','If someone takes your crown you get told when you next open the app, with a button to win it back.']
  ]},
- {id:'u9',h:'OLDER',items:[
+ {id:'u9',h:'FIRST VERSION',items:[
   ['🆕','NEW and OLD tags','When the same name shows up more than once on the board, the newest score is tagged NEW and the older ones are dimmed.'],
   ['⏱️','Time on every score','Each leaderboard row shows how long ago it was played.'],
   ['✍️','Write it practice','In Study you get a dish name and write the abbreviation and price, or the abbreviation and write the dish. Spelling is forgiving.'],
@@ -1126,7 +1028,8 @@ function openInfo(){
   o.innerHTML='<div class="card"><div class="hd"><i aria-hidden="true">鸡</i><h2>About Order Rush</h2><button class="x" type="button" aria-label="Close">✕</button></div><div class="bd">'+
     '<p><b>Order Rush</b> is a practice tool for learning the Tak Shing take-out menu: the order abbreviations and the prices, so taking a phone order gets quicker and easier.</p>'+
     '<h3>WHAT IS INSIDE</h3><ul>'+rows.map(function(r){return '<li><span class="ic" aria-hidden="true">'+r[0]+'</span><div><b>'+r[1]+'</b><span>'+esc(r[2])+'</span></div></li>'}).join('')+'</ul>'+
-    '<h3>THE LEADERBOARD</h3><p>Scores from everyone who plays are shown together on one board and update live. Pick a name of up to 8 characters when you post. Beat the top score to become the Rooster King.</p>'+
+    '<h3>YOUR ROLE</h3><p>Takeout and dine-in have different prices. Servers learn dine-in prices, cashiers learn takeout prices, and all-rounders learn both. Change your role with the gold button at the top.</p>'+
+    '<h3>THE LEADERBOARD</h3><p>Each role has its own board. Scores from everyone in your role show up together and update live. Pick a name of up to 8 characters when you post. Beat the top score to become the Rooster King.</p>'+
     '</div></div>';
   function close(){o.remove();document.removeEventListener('keydown',esc2)}
   function esc2(e){if(e.key==='Escape')close()}
@@ -1135,8 +1038,30 @@ function openInfo(){
   document.body.appendChild(o);
   var x=o.querySelector('.x');if(x)x.focus();
 }
+function paintRole(){var b=$('#roleBtn');if(!b)return;var r=ROLES[ROLE];b.innerHTML='<b aria-hidden="true">'+r.cn+'</b>'+r.n.toUpperCase();b.setAttribute('aria-label','Your role: '+r.n+'. Change role')}
+function openRole(first){
+  if($('#news'))$('#news').remove();
+  var o=document.createElement('div');o.id='news';o.className='rolep';o.setAttribute('role','dialog');o.setAttribute('aria-modal','true');o.setAttribute('aria-label','Pick your role');
+  o.innerHTML='<div class="card"><div class="hd"><i aria-hidden="true">岗</i><h2>'+(first?'What’s your job?':'Change your role')+'</h2>'+(first?'':'<button class="x" type="button" aria-label="Close">✕</button>')+'</div><div class="bd">'+
+    '<p class="lead">'+(first?'Takeout and dine-in have different prices. Pick your job and Order Rush uses the right ones everywhere.':'Prices, quizzes and the leaderboard all switch to match. Each role has its own leaderboard.')+'</p>'+
+    '<div class="rolec">'+['dn','to','all'].map(function(k){var r=ROLES[k];return '<button type="button" data-role="'+k+'" class="'+(ROLE_SET&&ROLE===k?'on':'')+'"><i aria-hidden="true">'+r.cn+'</i><div><b>'+r.n+'<em>'+r.m.toUpperCase()+'</em></b><span>'+esc(r.d)+'</span></div></button>'}).join('')+'</div>'+
+    (first?'<p class="lead" style="font-size:.8rem">You can change this any time with the button at the top.</p>':'')+'</div></div>';
+  function close(){o.remove();document.removeEventListener('keydown',esc2)}
+  function esc2(e){if(e.key==='Escape'&&!first)close()}
+  o.addEventListener('click',function(e){
+    var b=e.target.closest('[data-role]');
+    if(b){var k=b.dataset.role;lsSet(K_ROLE,k);if(k===ROLE&&ROLE_SET){close();return}
+      if(!ROLE_SET&&k===ROLE){ROLE_SET=true;close();return}
+      o.querySelector('.bd').innerHTML='<p class="lead" style="text-align:center;padding:20px 0">Switching to '+esc(ROLES[k].n)+'...</p>';
+      try{location.reload()}catch(err){}return}
+    if(!first&&(e.target===o||e.target.closest('.x')))close();
+  });
+  document.addEventListener('keydown',esc2);
+  document.body.appendChild(o);
+  var f=o.querySelector('.x')||o.querySelector('[data-role]');if(f){try{f.focus()}catch(e){}}
+}
 /* ---------- rooster king ---------- */
-var K_KING='ts_rush_king_v1',KCHK=false;
+var K_KING='ts_rush_king_v1_'+ROLE,KCHK=false;
 var CROWN_SVG='<svg viewBox="0 0 44 40" aria-hidden="true"><path d="M4 32 L2 8 L13 18 L22 2 L31 18 L42 8 L40 32 Z" fill="#8E1219"/><rect x="4" y="30" width="36" height="7" rx="2" fill="#6B0E14"/><circle cx="22" cy="33.5" r="2.4" fill="#FFF3B8"/></svg>';
 function kingPlay(){for(var i=0;i<plays.length;i++){if(plays[i].c===1)return plays[i].s>0?plays[i]:null}return null}
 function modeLabel(p){return p.c===1?'CLASSIC':MODE_TAG[p.m]}
@@ -1150,7 +1075,7 @@ function paintKing(){
   if(!k){el.hidden=true;return}
   var r=reign(k.t);
   el.hidden=false;el.setAttribute('aria-label','Rooster King '+k.n+' with '+k.s+' points. Open the arcade.');
-  el.innerHTML='<span class="kr">'+rooSVG(true)+'</span><span class="kt"><span class="k">鸡王 ROOSTER KING</span><span class="n">'+esc(k.n)+'<b>'+k.s.toLocaleString()+'</b></span></span><span class="rg"><b>'+r[0]+'</b>'+r[1]+'</span>';
+  el.innerHTML='<span class="kr">'+rooSVG(true)+'</span><span class="kt"><span class="k">鸡王 ROOSTER KING · '+ROLES[ROLE].n.toUpperCase()+'S</span><span class="n">'+esc(k.n)+'<b>'+k.s.toLocaleString()+'</b></span></span><span class="rg"><b>'+r[0]+'</b>'+r[1]+'</span>';
 }
 function checkKing(){
   var k=kingPlay();if(!k)return;
@@ -1227,19 +1152,19 @@ function cleanName(n){n=String(n==null?'':n).toUpperCase().replace(/[^A-Z0-9 .!_
 function cmpPlay(a,b){return b.s-a.s||a.t-b.t}
 function parsePlay(p,uid){
   if(!p||typeof p.s!=='number'||!isFinite(p.s))return null;
-  return {uid:uid,n:cleanName(p.n),s:Math.max(0,Math.min(9999999,Math.floor(p.s))),r:Math.max(0,+p.r||0),b:Math.max(0,+p.b||0),m:MODE_TAG[p.m]?p.m:'mix',c:p.c===1?1:0,t:+p.t||0};
+  return {uid:uid,n:cleanName(p.n),s:Math.max(0,Math.min(9999999,Math.floor(p.s))),r:Math.max(0,+p.r||0),b:Math.max(0,+p.b||0),m:MODE_TAG[p.m]?p.m:'mix',c:p.c===1?1:0,t:+p.t||0,ro:(p.ro==='dn'||p.ro==='all')?p.ro:'to'};
 }
 function readSnapshot(snap){
   var all=[];byUid={};
   snap.docs.forEach(function(d){
     var x=d.data()||{};byUid[d.id]=x;
-    (Array.isArray(x.plays)?x.plays.slice(0,10):[]).forEach(function(p){var q=parsePlay(p,d.id);if(q)all.push(q)});
+    (Array.isArray(x.plays)?x.plays.slice(0,30):[]).forEach(function(p){var q=parsePlay(p,d.id);if(q&&q.ro===ROLE)all.push(q)});
   });
   plays=all.sort(cmpPlay);
 }
 function readLocal(){
   var arr=[];try{arr=JSON.parse(lsGet(K_LOCAL)||'[]')}catch(e){}
-  plays=(Array.isArray(arr)?arr:[]).map(function(p){return parsePlay(p,'local')}).filter(Boolean).sort(cmpPlay);
+  plays=(Array.isArray(arr)?arr:[]).map(function(p){return parsePlay(p,'local')}).filter(function(p){return p&&p.ro===ROLE}).sort(cmpPlay);
 }
 
 function newId(){var a='abcdefghijklmnopqrstuvwxyz0123456789',s='';try{var r=new Uint8Array(20);crypto.getRandomValues(r);for(var i=0;i<20;i++)s+=a[r[i]%36]}catch(e){for(var j=0;j<20;j++)s+=a[Math.floor(Math.random()*36)]}return s}
@@ -1292,10 +1217,12 @@ async function postScore(play){
     try{
       var cur=byUid[UID]||{};
       var mine=(Array.isArray(cur.plays)?cur.plays:[]).map(function(p){return parsePlay(p,UID)}).filter(Boolean);
-      mine.push({uid:UID,n:play.n,s:play.s,r:play.r,b:play.b,m:play.m,c:play.c,t:play.t});
+      mine.push({uid:UID,n:play.n,s:play.s,r:play.r,b:play.b,m:play.m,c:play.c,t:play.t,ro:ROLE});
       mine.sort(cmpPlay);
-      var keep=mine.slice(0,10).map(function(p){return {n:p.n,s:p.s,r:p.r,b:p.b,m:p.m,c:p.c,t:p.t}});
-      await FBSET({v:1,games:(+cur.games||0)+1,plays:keep});
+      var per={},keep=[];mine.forEach(function(p){per[p.ro]=(per[p.ro]||0)+1;if(per[p.ro]<=10)keep.push({n:p.n,s:p.s,r:p.r,b:p.b,m:p.m,c:p.c,t:p.t,ro:p.ro})});
+      var gm={};if(cur.gm&&typeof cur.gm==='object'){['to','dn','all'].forEach(function(k){if(+cur.gm[k])gm[k]=+cur.gm[k]})}else if(+cur.games)gm.to=+cur.games;
+      gm[ROLE]=(gm[ROLE]||0)+1;
+      await FBSET({v:1,games:(+cur.games||0)+1,gm:gm,plays:keep});
       return 'shared';
     }catch(e){saveLocal(play);return 'denied'}
   }
@@ -1303,10 +1230,12 @@ async function postScore(play){
     try{
       var cur=byUid[UID]||{};
       var mine=(Array.isArray(cur.plays)?cur.plays:[]).map(function(p){return parsePlay(p,UID)}).filter(Boolean);
-      mine.push({uid:UID,n:play.n,s:play.s,r:play.r,b:play.b,m:play.m,c:play.c,t:play.t});
+      mine.push({uid:UID,n:play.n,s:play.s,r:play.r,b:play.b,m:play.m,c:play.c,t:play.t,ro:ROLE});
       mine.sort(cmpPlay);
-      var keep=mine.slice(0,10).map(function(p){return {n:p.n,s:p.s,r:p.r,b:p.b,m:p.m,c:p.c,t:p.t}});
-      await DB.collection('scores').doc(UID).set({v:1,games:(+cur.games||0)+1,plays:keep});
+      var per={},keep=[];mine.forEach(function(p){per[p.ro]=(per[p.ro]||0)+1;if(per[p.ro]<=10)keep.push({n:p.n,s:p.s,r:p.r,b:p.b,m:p.m,c:p.c,t:p.t,ro:p.ro})});
+      var gm={};if(cur.gm&&typeof cur.gm==='object'){['to','dn','all'].forEach(function(k){if(+cur.gm[k])gm[k]=+cur.gm[k]})}else if(+cur.games)gm.to=+cur.games;
+      gm[ROLE]=(gm[ROLE]||0)+1;
+      await DB.collection('scores').doc(UID).set({v:1,games:(+cur.games||0)+1,gm:gm,plays:keep});
       return 'shared';
     }catch(e){
       saveLocal(play);return 'denied';
@@ -1348,7 +1277,8 @@ function playerRows(){
   });
   var arr=Object.keys(g).map(function(k){
     var x=g[k],doc=byUid[k];
-    x.games=Math.max(x.n,(doc&&+doc.games)||0);return x;
+    var gmc=doc?(doc.gm&&typeof doc.gm==='object'?+doc.gm[ROLE]||0:(ROLE==='to'?+doc.games||0:0)):0;
+    x.games=Math.max(x.n,gmc);return x;
   }).sort(function(a,b){return cmpPlay(a.best,b.best)});
   return arr;
 }
@@ -1359,10 +1289,10 @@ function boardHTML(){
   if(STATUS==='live'){
     if(CANW===false){st='Live board. You can watch but not post: ask the owner for Contributor access.';cls+=' warn'}
     else if(!UID){st='Live board. Sign in to Claude to post your scores.';cls+=' warn'}
-    else{st='Live board, shared with everyone who plays this page.';cls+=' live'}
+    else{st='<b>'+ROLES[ROLE].n.toUpperCase()+' BOARD</b> · '+ROLES[ROLE].m.toLowerCase()+' prices, live with everyone. Your role at the top picks the board.';cls+=' live'}
   }else if(STATUS==='local'){st=STANDALONE?'Scores are saved on this device. Use Copy my score to challenge friends.':'This device only. Open the shared page to compete with friends.';cls+=' warn'}
   else st='Connecting to the board...';
-  h+='<p class="'+cls+'">'+st+'</p>';
+  h+='<p class="'+cls+'">'+(st.indexOf('<b>')===0?st:esc(st))+'</p>';
   h+='<ol class="rows">';
   if(B.tab==='players'){
     var pr=playerRows();
@@ -1422,6 +1352,7 @@ function home(){
 function poolFor(kind){
   return ITEMS.filter(function(c){
     if(G.scope!=='all'&&c.sec.id!==G.scope)return false;
+    if((kind==='ab'||kind==='nm')&&!textPool(c.it))return false;
     return kind==='pr'||c.it[1];
   });
 }
@@ -1450,7 +1381,7 @@ function nextQ(){
   }else{
     if(it[2].length>1)idx=Math.floor(Math.random()*it[2].length);
     var cp=it[2][idx];correct=fmt(cp);
-    var near=PRICES.filter(function(p){return p!==cp}).sort(function(a,b){return Math.abs(parseFloat(a)-parseFloat(cp))-Math.abs(parseFloat(b)-parseFloat(cp))});
+    var near=PRICES_M[it.m].filter(function(p){return p!==cp}).sort(function(a,b){return Math.abs(parseFloat(a)-parseFloat(cp))-Math.abs(parseFloat(b)-parseFloat(cp))});
     options=shuffle(shuffle(near.slice(0,6)).slice(0,3).map(fmt).concat([correct]));
   }
   G.n++;
@@ -1464,7 +1395,7 @@ function hearts(){var h='';for(var i=0;i<MAXS;i++)h+=heart(i<G.strikes);return h
 
 function drawPlay(){
   var q=G.q,c=q.c,it=c.it,sec=c.sec,front,ask;
-  var colLbl=(it[2].length>1&&(q.kind==='pr'||q.kind==='ap'))?' ('+sec.cols[q.idx]+')':'';
+  var plb=(q.kind==='pr'||q.kind==='ap')?priceLabel(it,sec,q.idx):'',colLbl=plb?' ('+plb+')':'';
   if(q.kind==='ab'){ask='Write it on the ticket';front='<div class="big">'+esc(it[0])+'</div>'}
   else if(q.kind==='nm'){ask='What is the order?';front='<div class="hand">'+esc(it[1])+'</div>'}
   else if(q.kind==='pr'){ask='What does it cost?'+colLbl;front='<div class="big">'+esc(it[0])+'</div>'}
@@ -1476,7 +1407,7 @@ function drawPlay(){
     '<div class="mid"><span class="cap">COMBO</span><div class="val cmb" id="cmb">x'+mult()+'</div><div class="cpips" id="cp">'+pips()+'</div></div>'+
     '<div class="right"><span class="cap">LIVES</span><div class="hearts" id="hr">'+hearts()+'</div></div></div>'+
     '<div class="bar" id="barw"><i id="bar"></i></div>'+
-    '<div class="stage" id="stage"><div class="ticket"><div class="head"><span>ORDER #'+pad(G.n,3)+'</span><span>'+esc(sec.t.toUpperCase())+(it[3]?' / HOT':'')+'</span></div>'+front+'<div class="ask">'+esc(ask)+'</div></div><div class="banner" id="ban"></div></div>'+
+    '<div class="stage" id="stage"><div class="ticket"><div class="head"><span>ORDER #'+pad(G.n,3)+'</span><span>'+esc(sec.t.toUpperCase())+(it[3]?' / HOT':'')+'</span></div>'+front+'<div class="ask">'+askTag(it,ask)+'</div></div><div class="banner" id="ban"></div></div>'+
     '<div class="opts'+(long?' long':'')+'">'+q.options.map(function(o,i){return '<button class="'+cls+'" data-i="'+i+'"><kbd>'+(i+1)+'</kbd>'+esc(o)+'</button>'}).join('')+'</div>'+
     '<div class="fb" id="fb"></div>';
 }
@@ -1521,7 +1452,7 @@ function afterAnswer(){if(!G)return;if(VIEW!=='arcade'||document.hidden){G.pend=
 
 function priceText(c){
   var it=c.it,sec=c.sec;
-  return it[2].length===1?fmt(it[2][0]):it[2].map(function(p,i){return sec.cols[i]+' '+fmt(p)}).join(' / ');
+  return (ROLE==='all'?mWord(it)+' ':'')+(it[2].length===1?fmt(it[2][0]):it[2].map(function(p,i){return sizeName(sec,i,it)+' '+fmt(p)}).join(' / '));
 }
 function missesHTML(g){
   var seen={},ms=g.misses.filter(function(q){var k=q.c.it[0];if(seen[k])return false;seen[k]=1;return true});
@@ -1559,7 +1490,7 @@ async function doPost(){
   var g=LASTG;if(!g||g.posted)return;g.posted=true;
   var btn=$('#post'),sk=$('#skip');if(btn)btn.disabled=true;if(sk)sk.disabled=true;
   var name=cleanName($('#nm').value);lsSet(K_NAME,name);
-  var play={n:name,s:g.score,r:g.right,b:g.best,m:g.mode,c:g.classic?1:0,t:Date.now()};
+  var play={n:name,s:g.score,r:g.right,b:g.best,m:g.mode,c:g.classic?1:0,t:Date.now(),ro:ROLE};
   var res=await postScore(play);
   results(play,res);
 }
@@ -1598,18 +1529,24 @@ function results(play,res){
 
 /* ---------- cheat sheet ---------- */
 function priceHTML(sec,it){
-  var ps=it[2];
-  if(ps.length===1)return '$'+ps[0];
-  return ps.map(function(p,i){return '<span class="pp"><small>'+sec.cols[i]+'</small>$'+p+'</span>'}).join('');
+  var ps=it[2],lab=ROLE==='all'?(it.m==='dn'?'DINE':'TO'):'';
+  if(ps.length===1&&!lab)return '$'+ps[0];
+  return ps.map(function(p,i){var c=colsOf(it,sec)[i]||'';return '<span class="pp"><small>'+esc((lab+(lab&&c?' ':'')+c)||'')+'</small>$'+p+'</span>'}).join('');
 }
-function sheetRow(sec,it){
+function sheetRow(sec,it,it2){
   var ab=it[1]?'<div class="ab" data-c tabindex="0">'+esc(it[1])+'</div>':'<div class="ab none">no abbreviation</div>';
+  var only=ROLE==='all'&&!it2?'<span class="only '+it.m+'">'+(it.m==='dn'?'dine-in only':'takeout only')+'</span>':'';
   return '<div class="row" data-s="'+esc((it[0]+' '+it[1]).toLowerCase())+'">'+ab+
-    '<div class="nm">'+esc(it[0])+(it[3]?'<span class="hot">hot</span>':'')+'</div><div class="pr" data-c tabindex="0">'+priceHTML(sec,it)+'</div></div>';
+    '<div class="nm">'+esc(it[0])+(it[3]?'<span class="hot">hot</span>':'')+only+'</div><div class="pr'+(ROLE==='all'?' both':'')+'" data-c tabindex="0">'+priceHTML(sec,it)+(it2?priceHTML(sec,it2):'')+'</div></div>';
+}
+function sheetRows(sec){
+  var out=[],its=sec.items;
+  for(var i=0;i<its.length;i++){var a=its[i],b=its[i+1];if(b&&b.dup&&b.si===a.si&&b.ii===a.ii){out.push(sheetRow(sec,a,b));i++}else out.push(sheetRow(sec,a))}
+  return out.join('');
 }
 $('#sheet').innerHTML=S.map(function(sec){
   return '<section class="sec" id="sec-'+sec.id+'"><h3>'+esc(sec.t.toUpperCase())+'</h3>'+(sec.note?'<p class="note">'+esc(sec.note)+'</p>':'')+
-    '<div class="rows2">'+sec.items.map(function(it){return sheetRow(sec,it)}).join('')+'</div></section>';
+    '<div class="rows2">'+sheetRows(sec)+'</div></section>';
 }).join('')+'<p class="empty2" id="none" hidden>Nothing matches that search.</p>';
 $('#jump').innerHTML=S.map(function(s){return '<a href="#sec-'+s.id+'">'+esc(s.t.replace(/ \(.*\)/,''))+'</a>'}).join('');
 function cover(){
@@ -1695,17 +1632,75 @@ var PG=[
  {t:'Family dinner',rows:[
   {l:'Dinner A, B or C (take-out only)',sec:'fam'}]}
 ];
-function pgRow(r){
+var PG_DN=[
+ {t:'Appetizers',rows:[
+  {l:'Egg rolls',sec:'app',re:/^(Small Eggroll|Homemade Egg Roll)/},
+  {l:'Wonton, puffs, sugar rolls',sec:'app',re:/^(Crispy Wonton|Cream Cheese Puff|Sugar Roll)/},
+  {l:'Pot stickers, butterfly shrimp',sec:'app',re:/^(Fried Pot Sticker|Butterfly Shrimp)/},
+  {l:'Chicken wings',sec:'app',re:/^Chicken Wing/}]},
+ {t:'Soup',cols:['Small','Large'],rows:[
+  {l:'Every soup but Tak Shing',sec:'soup',re:/^(?!Tak)/},
+  {l:'Tak Shing wonton (one size)',sec:'soup',re:/^Tak/}]},
+ {t:'Chow mein (one size)',rows:[
+  {l:'Pork',sec:'cm',re:/^Pork Chow Mein/},
+  {l:'Chicken, mushroom, subgum',sec:'cm',re:/^(Chicken Chow|Mushroom|Chicken Mushroom|Subgum|Chicken Subgum)/},
+  {l:'Vegetable, special vegetable',sec:'cm',re:/^(Vegetable|Special Vegetable)/},
+  {l:'Beef, Tak Shing, special chicken, special pork',sec:'cm',re:/^(Beef Chow|Tak Shing|Special Chicken|Special Pork)/},
+  {l:'Shrimp, house special, special beef, special shrimp',sec:'cm',re:/^(Shrimp Chow|House Special|Special Beef|Special Shrimp)/}]},
+ {t:'Lo mein and rice noodles',rows:[
+  {l:'Chicken, pork, beef',sec:'lm',re:/^(Chicken|Pork|Beef) /},
+  {l:'Shrimp, house, Singapore',sec:'lm',re:/^(Shrimp|House|Singapore)/},
+  {l:'Vegetable',sec:'lm',re:/^Vegetable/}]},
+ {t:'Fried rice',rows:[
+  {l:'Chicken, pork, beef',sec:'fr',re:/^(Chicken|Pork|Beef) Fried/},
+  {l:'Shrimp, house, Hawaiian',sec:'fr',re:/^(Shrimp|House|Hawaiian) Fried/},
+  {l:'Vegetable',sec:'fr',re:/^Vegetable/}]},
+ {t:'Special Cantonese chow mein',rows:[
+  {l:'Chicken, B.B.Q. pork',sec:'cant',re:/^(Chicken|B\.B\.Q\. Pork)/},
+  {l:'Beef, shrimp, house',sec:'cant',re:/^(Beef|Shrimp|House)/}]},
+ {t:'Egg foo young',rows:[
+  {l:'Chicken, pork',sec:'efy',re:/^(Chicken|Pork)/},
+  {l:'Shrimp',sec:'efy',re:/^Shrimp/},
+  {l:'Vegetable',sec:'efy',re:/^Vegetable/}]},
+ {t:'House specialties and vegetarian',rows:[
+  {l:'House specialties: happy family, house green bean, gumbo wonton, subgum wonton, house hot pepper',sec:'combo',re:/^(House|Happy|Gumbo|Subgum)/},
+  {l:'Vegetarian: Buddha delight, green bean, Chinese vegetable, Kung Po vegetable, tofu',sec:'combo',re:/^(Buddha|Green Bean|Chinese|Kung Po|Sweet and Sour Tofu|Sesame Tofu)/},
+  {l:'Orange chicken',sec:'combo',re:/^Orange/}]},
+ {t:'Sweet and sour, lemon sauce',rows:[
+  {l:'Sweet & sour chicken, pork',sec:'ss',re:/(Chicken|Pork)$/},
+  {l:'Sweet & sour shrimp',sec:'ss',re:/Shrimp$/},
+  {l:'Lemon chicken, pork',sec:'lem',re:/^Lemon (Chicken|Pork)/},
+  {l:'Lemon shrimp',sec:'lem',re:/^Lemon Shrimp/}]},
+ {t:'Chicken, pork, beef, shrimp',n:'One price for every dish in each section.',rows:[
+  {l:'Chicken',sec:'chi'},{l:'Pork',sec:'pork'},{l:'Beef',sec:'beef'},{l:'Shrimp (big shrimp)',sec:'shr'}]},
+ {t:'Szechuan (mild to insane hot)',rows:[
+  {l:'Chicken, pork',sec:'sze',re:/(Chicken|Pork)$/},
+  {l:'Beef, big shrimp',sec:'sze',re:/(Beef|Shrimp)$/},
+  {l:'Szechuan house (all meat)',sec:'szh'}]},
+ {t:'Salt & pepper, fish',rows:[
+  {l:'Chicken wings (8)',sec:'sp',re:/Wings/},
+  {l:'Tofu',sec:'sp',re:/Tofu/},
+  {l:'Shrimp (shell)',sec:'sp',re:/Shrimp/},
+  {l:'Fish, sweet & sour or salt & pepper',sec:'sp',re:/Fish/}]},
+ {t:'Special combinations (A to Z)',n:'Come with vegetable fried rice.',rows:[
+  {l:'A, B, D, E',sec:'sc',ab:['A','B','D','E']},
+  {l:'C, F to L, N, O, Q to X, CC',sec:'sc',ab:['C','F','G','H','I','J','K','L','N','O','Q','R','S','T','U','V','W','X','CC']},
+  {l:'M, P, Y, Z, xZ',sec:'sc',ab:['M','P','Y','Z','xZ']},
+  {l:'Lunch special (Tue to Fri, 11 am to 2 pm)',p:'$10.50'}]}
+];
+function pgRow(r,mn){
   var right='';
   if(r.p){right='<div class="pgp">'+esc(r.p)+'</div>'}
   else{
-    var sec=S.filter(function(s){return s.id===r.sec})[0];
+    var sec=S.filter(function(s){return s.id===r.sec})[0];if(!sec)return '';
     var m=sec.items.filter(function(it){
+      if(it.m!==mn)return false;
       if(r.re&&!r.re.test(it[0]))return false;
       if(r.ab&&r.ab.indexOf(it[1])<0)return false;
       return true;
     });
-    var first=m.length?m[0][2].join('|'):'';
+    if(!m.length)return '';
+    var first=m[0][2].join('|');
     var same=m.length&&m.every(function(it){return it[2].join('|')===first});
     if(!same)right='<div class="pgp">varies</div>';
     else if(m[0][2].length===1)right='<div class="pgp">$'+m[0][2][0]+'</div>';
@@ -1713,13 +1708,18 @@ function pgRow(r){
   }
   return '<div class="pgr"><div class="pgl">'+esc(r.l)+'</div><span class="ld" aria-hidden="true"></span>'+right+'</div>';
 }
+function pgBlock(list,mn){
+  return list.map(function(g){
+    var rows=g.rows.map(function(r){return pgRow(r,mn)}).join('');if(!rows)return '';
+    var cols=g.cols?'<div class="pgc"><span>'+esc(g.cols[0])+'</span><span>'+esc(g.cols[1])+'</span></div>':'';
+    return '<div class="pg"><div class="pgh"><div class="pgt"><h4>'+esc(g.t)+'</h4>'+cols+'</div>'+(g.n?'<p>'+esc(g.n)+'</p>':'')+'</div>'+rows+'</div>';
+  }).join('');
+}
 function pricesHTML(){
-  return '<div class="sec" style="margin-top:8px"><h3>PRICES BY DISH TYPE</h3></div>'+
-    '<p class="note" style="margin-bottom:12px">Find the dish type, then the line that matches. The price on the right covers everything on that line.</p>'+
-    PG.map(function(g){
-      var cols=g.cols?'<div class="pgc"><span>'+esc(g.cols[0])+'</span><span>'+esc(g.cols[1])+'</span></div>':'';
-      return '<div class="pg"><div class="pgh"><div class="pgt"><h4>'+esc(g.t)+'</h4>'+cols+'</div>'+(g.n?'<p>'+esc(g.n)+'</p>':'')+'</div>'+g.rows.map(pgRow).join('')+'</div>';
-    }).join('');
+  var intro='<p class="note" style="margin-bottom:12px">Find the dish type, then the line that matches. The price on the right covers everything on that line.</p>';
+  if(ROLE==='all')return '<div class="sec" style="margin-top:8px"><h3>TAKEOUT PRICES</h3></div>'+intro+pgBlock(PG,'to')+
+    '<div class="sec" style="margin-top:22px"><h3>DINE-IN PRICES</h3></div><p class="note" style="margin-bottom:12px">Dine-in prices are higher, and dine-in chow mein comes in one size.</p>'+pgBlock(PG_DN,'dn');
+  return '<div class="sec" style="margin-top:8px"><h3>'+(ROLE==='dn'?'DINE-IN PRICES':'TAKEOUT PRICES')+' BY DISH TYPE</h3></div>'+intro+(ROLE==='dn'?pgBlock(PG_DN,'dn'):pgBlock(PG,'to'));
 }
 $('#decoder').innerHTML=D.map(function(g){
   return '<div class="group"><div class="sec" style="margin-top:0"><h3>'+esc(g[0].toUpperCase())+'</h3></div><div class="dec">'+g[1].map(function(x){return '<div><b>'+esc(x[0])+'</b><span>'+esc(x[1])+'</span></div>'}).join('')+'</div></div>';
@@ -1736,8 +1736,6 @@ try{var so=JSON.parse(lsGet('ts_rush_study_v1')||'null');if(so){
   if(so.scope==='all'||S.some(function(s){return s.id===so.scope}))FOPT.scope=so.scope;
 }}catch(e){}
 function saveStudy(){lsSet('ts_rush_study_v1',JSON.stringify(FOPT))}
-var SIZEN={'Pt':'Pint','Qt':'Quart','Sm 16oz':'Small','Lg 32oz':'Large'};
-function sizeName(sec,i){var c=sec.cols?sec.cols[i]:'';return SIZEN[c]||c}
 
 function studySeg(){
   var k=FOPT.kind;
@@ -1779,13 +1777,13 @@ function fcDraw(){
     return;
   }
   var c=F.queue[0],sec=c.sec,it=c.it,front,back;
-  var price='<div class="tprice">'+(it[2].length===1?'$'+it[2][0]:it[2].map(function(p,i){return '<span><small>'+esc(sizeName(sec,i))+'</small>$'+p+'</span>'}).join(''))+'</div>';
+  var price=tprice(sec,it);
   if(F.mode==='ab'){front='<div class="big">'+esc(it[0])+'</div>';back='<div class="hand">'+esc(it[1])+'</div>'+price}
   else if(F.mode==='nm'){front='<div class="hand">'+esc(it[1])+'</div>';back='<div class="big">'+esc(it[0])+'</div>'+price}
   else{front='<div class="big">'+esc(it[0])+'</div>'+(it[1]?'<div class="hand">'+esc(it[1])+'</div>':'');back=price}
   box.innerHTML='<div class="prog"><i style="width:'+(F.cleared/F.total*100)+'%"></i></div>'+
     '<div class="fstat"><span>'+F.cleared+' / '+F.total+' CLEARED</span><span>'+F.misses+' MISSED</span></div>'+
-    '<div class="stage"><div class="ticket"><div class="head"><span>CARD</span><span>'+esc(sec.t.toUpperCase())+(it[3]?' / HOT':'')+'</span></div>'+front+(F.shown?'<div class="back">'+back+'</div>':'')+'</div></div>'+
+    '<div class="stage"><div class="ticket"><div class="head"><span>CARD'+(ROLE==='all'?' · '+(it.m==='dn'?'DINE-IN':'TAKEOUT'):'')+'</span><span>'+esc(sec.t.toUpperCase())+(it[3]?' / HOT':'')+'</span></div>'+front+(F.shown?'<div class="back">'+back+'</div>':'')+'</div></div>'+
     (F.shown?'<div class="facts"><button class="btn badb" id="fcMiss">MISSED</button><button class="btn okb" id="fcGot">GOT IT</button></div>':'<div class="facts" style="grid-template-columns:1fr"><button class="btn" id="fcShow">SHOW ANSWER</button></div>')+
     '<div style="margin-top:10px"><button class="btn alt" id="fcHome">END DECK</button></div>';
 }
@@ -1832,6 +1830,7 @@ function wStart(){
   var m=FOPT.wmode,pool=[];
   S.forEach(function(sec){if(FOPT.scope!=='all'&&FOPT.scope!==sec.id)return;sec.items.forEach(function(it){
     if(m!=='pr'&&!it[1])return;
+    if((m==='ab'||m==='nm')&&!textPool(it))return;
     if(m==='nm'&&(sec.id==='sc'||sec.id==='fam'))return;
     pool.push({sec:sec,it:it});
   })});
@@ -1849,11 +1848,11 @@ function wDraw(){
   }
   var c=W.queue[0],sec=c.sec,it=c.it,m=W.mode,need=wNeeds(m),R=W.res,V=W.vals,chk=W.checked;
   var abPrompt=m==='nm'||m==='ap';
-  var size=it[2].length>1?sizeName(sec,W.idx):'';
+  var size=it[2].length>1?sizeName(sec,W.idx,it):'',plab=priceLabel(it,sec,W.idx);
   var ask=need.ab&&need.pr?'Write the abbreviation and price':need.ab?'Write the abbreviation':need.nm?'What is the dish?':'What does it cost?';
-  if(need.pr&&size)ask+=' ('+size.toLowerCase()+')';
+  if(need.pr&&plab)ask+=' ('+plab.toLowerCase()+')';
   var front=abPrompt?'<div class="hand">'+esc(it[1])+'</div>':'<div class="big">'+esc(it[0])+'</div>';
-  var priceAll='<div class="tprice">'+(it[2].length===1?'$'+it[2][0]:it[2].map(function(p,i){return '<span><small>'+esc(sizeName(sec,i))+'</small>$'+p+'</span>'}).join(''))+'</div>';
+  var priceAll=tprice(sec,it);
   var back='';
   if(chk){
     back='<div class="back"><div class="ansl">ANSWER</div>'+(abPrompt?'<div class="big" style="font-size:1.25rem">'+esc(it[0])+'</div>':(it[1]?'<div class="hand">'+esc(it[1])+'</div>':''))+priceAll+'</div>';
@@ -1864,7 +1863,7 @@ function wDraw(){
   var fields='';
   if(need.ab)fields+='<label class="wf" for="wAb"><span class="cap">ABBREVIATION</span><input class="win handin'+st('ab')+'" id="wAb" type="text"'+attrs+' placeholder="Type the abbreviation" value="'+esc(V.ab||'')+'"'+dis+'></label>';
   if(need.nm)fields+='<label class="wf" for="wNm"><span class="cap">DISH NAME</span><input class="win'+st('nm')+'" id="wNm" type="text"'+attrs+' placeholder="Type the dish name" value="'+esc(V.nm||'')+'"'+dis+'></label>';
-  if(need.pr)fields+='<label class="wf" for="wPr"><span class="cap">PRICE'+(size?' ('+esc(size.toUpperCase())+')':'')+'</span><span class="pricebox'+st('pr')+'"><span>$</span><input class="win" id="wPr" type="text" inputmode="decimal"'+attrs+' placeholder="0.00" value="'+esc(V.pr||'')+'"'+dis+'></span></label>';
+  if(need.pr)fields+='<label class="wf" for="wPr"><span class="cap">PRICE'+(plab?' ('+esc(plab.toUpperCase())+')':'')+'</span><span class="pricebox'+st('pr')+'"><span>$</span><input class="win" id="wPr" type="text" inputmode="decimal"'+attrs+' placeholder="0.00" value="'+esc(V.pr||'')+'"'+dis+'></span></label>';
   var res='';
   if(chk){
     var lines=[];
@@ -1878,7 +1877,7 @@ function wDraw(){
   }
   box.innerHTML='<div class="prog"><i style="width:'+(W.cleared/W.total*100)+'%"></i></div>'+
     '<div class="fstat"><span>'+W.cleared+' / '+W.total+' CLEARED</span><span class="stk">STREAK '+W.streak+'</span><span>'+W.misses+' MISSED</span></div>'+
-    '<div class="stage"><div class="ticket"><div class="head"><span>WRITE IT</span><span>'+esc(sec.t.toUpperCase())+(it[3]?' / HOT':'')+'</span></div>'+front+'<div class="ask">'+esc(ask)+'</div>'+back+'</div></div>'+
+    '<div class="stage"><div class="ticket"><div class="head"><span>WRITE IT</span><span>'+esc(sec.t.toUpperCase())+(it[3]?' / HOT':'')+'</span></div>'+front+'<div class="ask">'+askTag(it,ask)+'</div>'+back+'</div></div>'+
     '<form id="wForm" class="wform" autocomplete="off" novalidate>'+fields+res+
       '<button type="submit" class="btn'+(chk?'':' hot')+'" id="wGo">'+(chk?'NEXT ORDER':'CHECK')+'</button>'+
       (chk&&!R.ok&&!R.over?'<button type="button" class="btn alt" id="wOver">I WAS RIGHT, COUNT IT</button>':'')+
@@ -1962,6 +1961,7 @@ document.addEventListener('click',function(e){
     })();break;
     case 'newsBtn':openNews();break;
     case 'infoBtn':openInfo();break;
+    case 'roleBtn':openRole(false);break;
     case 'snd':SND=!SND;lsSet(K_SND,SND?'1':'0');paintSnd();if(SND)sfx('ok');break;
   }
 });
@@ -1996,14 +1996,15 @@ var SHAPES=['<svg viewBox="0 0 26 26"><path d="M13 3 L24 22 H2 Z" fill="#fff"/><
 
 /* questions are plain data so they can be shared through the live game */
 function kqMake(mode,scope,n){
-  var all=[];S.forEach(function(sec,si){if(scope!=='all'&&sec.id!==scope)return;sec.items.forEach(function(it,ii){all.push({si:si,ii:ii,sec:sec,it:it})})});
+  var all=[];S.forEach(function(sec){if(scope!=='all'&&sec.id!==scope)return;sec.items.forEach(function(it){all.push({si:it.si,ii:it.ii,m:it.m,sec:sec,it:it,txt:textPool(it)})})});
   var out=[],used={};
   for(var g=0;g<n;g++){
     var kinds=mode==='mix'?['ab','nm','pr','ap']:[mode];
     var kind=pick(kinds);
-    var pool=all.filter(function(c){return (kind==='pr'||c.it[1])&&!used[c.si+'.'+c.ii]});
-    if(!pool.length&&kind!=='pr'){kind=mode==='mix'?'pr':kind;pool=all.filter(function(c){return (kind==='pr'||c.it[1])&&!used[c.si+'.'+c.ii]})}
-    if(!pool.length){used={};pool=all.filter(function(c){return kind==='pr'||c.it[1]})}
+    var okK=function(c){return (kind==='pr'||c.it[1])&&(kind==='pr'||kind==='ap'||c.txt)};
+    var pool=all.filter(function(c){return okK(c)&&!used[c.si+'.'+c.ii]});
+    if(!pool.length&&kind!=='pr'){kind=mode==='mix'?'pr':kind;pool=all.filter(function(c){return okK(c)&&!used[c.si+'.'+c.ii]})}
+    if(!pool.length){used={};pool=all.filter(okK)}
     if(!pool.length)break;
     var c=pick(pool);used[c.si+'.'+c.ii]=1;
     var it=c.it,sec=c.sec,options,correct,idx=0;
@@ -2018,17 +2019,18 @@ function kqMake(mode,scope,n){
     }else{
       if(it[2].length>1)idx=Math.floor(Math.random()*it[2].length);
       var cp=it[2][idx];correct=fmt(cp);
-      var near=PRICES.filter(function(p){return p!==cp}).sort(function(a,b){return Math.abs(parseFloat(a)-parseFloat(cp))-Math.abs(parseFloat(b)-parseFloat(cp))});
+      var near=PRICES_M[c.m].filter(function(p){return p!==cp}).sort(function(a,b){return Math.abs(parseFloat(a)-parseFloat(cp))-Math.abs(parseFloat(b)-parseFloat(cp))});
       options=shuffle(shuffle(near.slice(0,6)).slice(0,3).map(fmt).concat([correct]));
     }
-    out.push({k:kind,s:c.si,i:c.ii,x:idx,o:options,a:options.indexOf(correct)});
+    out.push({k:kind,s:c.si,i:c.ii,m:c.m,x:idx,o:options,a:options.indexOf(correct)});
   }
   return out;
 }
-function kqQ(q){ /* rebuild display info from shared data */
-  var sec=S[q.s],it=sec&&sec.items[q.i];if(!it)return null;
+function kqQ(q,force){ /* rebuild display info from shared data (raw menu indices) */
+  var rs=RAW[q.s],r=rs&&rs.items[q.i],m=q.m==='dn'?'dn':'to';if(!r||!(m==='dn'?r[4]:r[2]))return null;
+  var it=mkv(r,m,q.s,q.i,m==='dn'?rs.dcols:rs.cols),sec={id:rs.id,t:m==='dn'?(rs.dt||rs.t):rs.t,cols:it.cols};
   var opts=[];for(var i=0;i<4;i++)if(q.o&&q.o[i]!=null)opts.push(String(q.o[i]));
-  var col=(it[2].length>1&&(q.k==='pr'||q.k==='ap'))?' ('+sizeName(sec,q.x)+')':'';
+  var plb=(q.k==='pr'||q.k==='ap')?priceLabel(it,sec,q.x,force):'',col=plb?' ('+plb+')':'';
   var ask,front;
   if(q.k==='ab'){ask='What is the abbreviation?';front='<div class="big">'+esc(it[0])+'</div>'}
   else if(q.k==='nm'){ask='What dish is this?';front='<div class="hand">'+esc(it[1])+'</div>'}
@@ -2062,7 +2064,7 @@ function kqTiles(d,state){ /* state: {pick, reveal, counts} */
   }).join('')+'</div>';
 }
 function kqTicket(d,n,total){
-  return '<div class="ticket"><div class="head"><span>QUESTION '+n+' OF '+total+'</span><span>'+esc(d.sec.t.toUpperCase())+'</span></div>'+d.front+'<div class="ask">'+esc(d.ask)+'</div></div>';
+  return '<div class="ticket"><div class="head"><span>QUESTION '+n+' OF '+total+'</span><span>'+esc(d.sec.t.toUpperCase())+'</span></div>'+d.front+'<div class="ask">'+askTag(d.it,d.ask)+'</div></div>';
 }
 function kqResult(ok,gain,streak,d,timeout){
   if(timeout)return '<div class="kq-res to"><b>Time’s up</b><span class="ans">Answer: '+esc(d.right)+'</span></div>';
@@ -2210,7 +2212,7 @@ async function kqHostGo(){
     }
     if(!pin)throw new Error('pin');
     var pl={};pl[UID]={n:name,sc:0,sk:0,g:0,ok:0};
-    await R.set(R.ref(FB.db,'games/'+pin),{v:1,host:UID,st:'lobby',qi:-1,lim:KOPT.lim,n:qs.length,created:Date.now(),qs:qs,pl:pl});
+    await R.set(R.ref(FB.db,'games/'+pin),{v:2,host:UID,ro:ROLE,st:'lobby',qi:-1,lim:KOPT.lim,n:qs.length,created:Date.now(),qs:qs,pl:pl});
   }catch(e){kqHome('host','Could not create a game. Check your connection and try again.');return}
   kqWatch(pin);
 }
@@ -2274,6 +2276,7 @@ function kqRender(fresh){
     kqStop();kqFocus(false);
     el.innerHTML='<div class="kq-lobby"><span class="cap">GAME PIN</span><div class="kq-bigpin">'+esc(KL.pin)+'</div>'+
       '<p class="kq-how">Friends open Order Rush, go to <b>Study → Quiz Battle → Join a game</b>, and type this PIN.</p>'+
+      '<p class="kq-how" style="margin-top:-6px">Prices: <b>'+esc((ROLES[g.ro]||ROLES.to).m)+'</b> menu. Every price question says which one.</p>'+
       '<button class="btn alt" data-k="invite" style="max-width:320px">COPY INVITE LINK</button>'+
       '<div class="kq-pls" id="kqPls">'+kqLobbyPls(pls)+'</div>'+
       (host?'<div class="kq-acts two"><button class="btn hot" data-k="liveStart"'+(pls.length<1?' disabled':'')+'>START GAME ('+pls.length+(pls.length===1?' PLAYER':' PLAYERS')+')</button><button class="btn alt" data-k="leave">CANCEL GAME</button></div>'
@@ -2281,7 +2284,7 @@ function kqRender(fresh){
     return;
   }
   if(g.st==='q'){
-    var q=g.qs&&g.qs[g.qi],d=q&&kqQ(q);if(!d)return;
+    var q=g.qs&&g.qs[g.qi],d=q&&kqQ(q,true);if(!d)return;
     var ans=kqAnswers(g,g.qi),my=ans[UID],cnt=Object.keys(ans).length;
     if(fresh){
       KL.pick=my?my.c:null;KL.t0=performance.now()-(my?my.ms:0);KL.d=d;
@@ -2300,7 +2303,7 @@ function kqRender(fresh){
   if(g.st==='rev'){
     kqStop();
     if(!fresh)return;
-    var q2=g.qs&&g.qs[g.qi],d2=q2&&kqQ(q2);if(!d2)return;
+    var q2=g.qs&&g.qs[g.qi],d2=q2&&kqQ(q2,true);if(!d2)return;
     var an=kqAnswers(g,g.qi),mine=an[UID],me=(g.pl&&g.pl[UID])||{},counts=[0,0,0,0];
     Object.keys(an).forEach(function(k){var c=an[k]&&an[k].c;if(c>=0&&c<4)counts[c]++});
     var ok=!!mine&&mine.c===d2.q.a;
@@ -2377,7 +2380,7 @@ function kqLiveNext(){
 function kqLiveStart(){if(kqIsHost())FB.R.update(kqRef(),{st:'q',qi:0})}
 function kqLiveAgain(){
   if(!kqIsHost())return;var g=KL.g;
-  var qs=kqMake(KOPT.mode,KOPT.scope,g.n||KOPT.n),upd={st:'lobby',qi:-1,qs:qs,n:qs.length,an:null,created:Date.now()};
+  var qs=kqMake(KOPT.mode,KOPT.scope,g.n||KOPT.n),upd={st:'lobby',qi:-1,qs:qs,n:qs.length,an:null,ro:ROLE,created:Date.now()};
   Object.keys(g.pl||{}).forEach(function(id){upd['pl/'+id+'/sc']=0;upd['pl/'+id+'/sk']=0;upd['pl/'+id+'/g']=0;upd['pl/'+id+'/ok']=0});
   FB.R.update(kqRef(),upd);
 }
@@ -2432,7 +2435,7 @@ document.addEventListener('keydown',function(e){
 });
 
 document.addEventListener('visibilitychange',function(){if(document.hidden)pauseGame();else if(VIEW==='arcade')resumeGame()});
-paintSnd();paintNews();
+paintSnd();paintNews();paintRole();
 home();
 studyHome();
 (function(){var h='';try{h=(location.hash||'').slice(1)}catch(e){}
@@ -2440,6 +2443,7 @@ studyHome();
   var map={sheet:'sheet',patterns:'pat',pat:'pat',study:'study',quiz:'study',flashcards:'study',arcade:'arcade',game:'arcade'};
   show(map[h]||lsGet('ts_rush_view_v1')||'sheet',true)})();
 initShared();
+if(!ROLE_SET)setTimeout(function(){openRole(true)},250);
 })();
 </script>
 </body>
