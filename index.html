@@ -616,6 +616,65 @@ ol.rows{list-style:none;margin:0;padding:0;border:1px solid var(--line);border-r
 .row .only{display:inline-block;margin-left:8px;padding:1px 6px;border-radius:4px;font-size:.58rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:#1F6FB2;vertical-align:2px}
 .row .only.dn{background:var(--red)}
 .row .pr.both{display:flex;flex-direction:column;align-items:flex-end;gap:2px}
+
+/* ---- legends plaque ---- */
+.legends{position:relative;overflow:hidden;margin:0 0 14px;padding:14px 14px 10px;border-radius:14px;border:1px solid var(--gold);background:linear-gradient(160deg,#3A1A12,#1E0A0C 60%,#2A1408);box-shadow:inset 0 0 0 3px rgba(233,185,73,.12),0 8px 24px rgba(0,0,0,.4)}
+.legends::before{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 35%,rgba(255,236,170,.14) 50%,transparent 65%);transform:translateX(-120%);animation:lgShine 6s ease-in-out infinite;pointer-events:none}
+@keyframes lgShine{0%,55%{transform:translateX(-120%)}85%,100%{transform:translateX(120%)}}
+.lg-h{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.lg-h i{flex:none;font-style:normal;font-family:var(--brush);font-size:1.5rem;line-height:1;padding:6px 7px;border-radius:6px;background:var(--red);color:var(--gold-soft);box-shadow:inset 0 0 0 2px var(--gold);transform:rotate(-3deg)}
+.lg-h b{display:block;font-family:var(--display);font-weight:800;font-size:1.15rem;letter-spacing:.2em;background:linear-gradient(180deg,#FFF3B8,#E9B949 55%,#B9850F);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lg-h span{display:block;font-size:.72rem;color:var(--dim);letter-spacing:.02em}
+.lg{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.lg li{display:grid;grid-template-columns:34px minmax(0,1fr) auto;align-items:center;gap:10px;padding:8px 10px;border-radius:10px;background:rgba(0,0,0,.25);border:1px solid rgba(233,185,73,.25)}
+.lg .medal{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;font-family:var(--brush);font-size:1rem;color:#2A1408;box-shadow:inset 0 -2px 0 rgba(0,0,0,.25),0 0 10px rgba(0,0,0,.3)}
+.lg .g1 .medal{background:radial-gradient(circle at 35% 30%,#FFF6C8,#E9B949 60%,#A87A12);box-shadow:0 0 14px rgba(233,185,73,.7)}
+.lg .g2 .medal{background:radial-gradient(circle at 35% 30%,#FFFFFF,#C9D0DA 60%,#8C96A3)}
+.lg .g3 .medal{background:radial-gradient(circle at 35% 30%,#FFD9B5,#C7793E 60%,#8A4B1E)}
+.lg .ln{font-family:var(--display);font-weight:800;letter-spacing:.06em;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lg .ln small{margin-left:8px;font-family:var(--body);font-weight:500;font-size:.66rem;letter-spacing:.04em;color:var(--dim)}
+.lg .ls{font-family:var(--display);font-weight:800;color:var(--gold-soft);font-variant-numeric:tabular-nums lining-nums}
+.lg .g1{border-color:rgba(233,185,73,.6);background:linear-gradient(90deg,rgba(233,185,73,.18),rgba(0,0,0,.2))}
+.lg-cat{margin-top:8px}
+.lg-cat summary{cursor:pointer;font-size:.66rem;font-weight:700;letter-spacing:.16em;color:var(--gold);padding:6px 2px;list-style-position:inside}
+.lg-cat ul{list-style:none;margin:4px 0 2px;padding:0;display:grid;gap:4px}
+.lg-cat li{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:10px;font-size:.8rem;padding:6px 8px;border-radius:8px;background:rgba(0,0,0,.2)}
+.lg-cat li span{color:var(--dim)}.lg-cat li b{letter-spacing:.05em}.lg-cat li em{font-style:normal;font-weight:700;color:var(--gold-soft);font-variant-numeric:tabular-nums}
+/* ---- podium rows ---- */
+.rows .r.top1{position:relative;overflow:hidden;background:linear-gradient(90deg,rgba(233,185,73,.22),rgba(233,185,73,.04) 65%,transparent)}
+.rows .r.top2{background:linear-gradient(90deg,rgba(201,208,218,.16),transparent 65%)}
+.rows .r.top3{background:linear-gradient(90deg,rgba(199,121,62,.18),transparent 65%)}
+.rows .r.top1::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 40%,rgba(255,240,180,.16) 50%,transparent 60%);transform:translateX(-120%);animation:lgShine 5s ease-in-out infinite;pointer-events:none}
+.rows .r.mine{animation:minePulse 2.6s ease-in-out infinite}
+@keyframes minePulse{0%,100%{box-shadow:inset 3px 0 0 var(--red)}50%{box-shadow:inset 3px 0 0 var(--gold),inset 0 0 18px rgba(233,185,73,.15)}}
+.rows.anim>li{animation:rowIn .45s cubic-bezier(.2,.9,.3,1) both;animation-delay:calc(var(--i,0)*45ms)}
+.rows.anim>li.mine{animation:rowIn .45s cubic-bezier(.2,.9,.3,1) both,minePulse 2.6s ease-in-out .8s infinite;animation-delay:calc(var(--i,0)*45ms),.8s}
+@keyframes rowIn{from{opacity:0;transform:translateX(-14px)}}
+.r.empty.fresh{display:block;text-align:center;padding:22px 12px;color:var(--gold-soft);font-family:var(--display);font-weight:700}
+.r.empty.fresh span{display:block;font-size:2rem;margin-bottom:6px}
+/* ---- player cards ---- */
+.rows.pcs{display:grid;gap:8px;border:0;background:none}
+.pc-count{list-style:none;font-size:.66rem;font-weight:700;letter-spacing:.16em;color:var(--dim);padding:2px 2px 0}
+.pc{list-style:none;display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:12px;align-items:center;padding:12px;border-radius:12px;border:1px solid var(--line);background:var(--panel)}
+.pc .seal{display:grid;place-items:center;width:44px;height:44px;border-radius:8px;background:var(--red);color:var(--gold-soft);font-family:var(--display);font-weight:800;font-size:1.4rem;box-shadow:inset 0 0 0 2px var(--gold),0 4px 12px rgba(215,38,49,.35);transform:rotate(-4deg)}
+.pc .pi{min-width:0}
+.pc .pi b{display:block;font-family:var(--display);font-weight:800;letter-spacing:.06em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pc .pi b .you{font-style:normal;font-family:var(--body);font-size:.58rem;font-weight:700;letter-spacing:.08em;margin-left:8px;padding:2px 6px;border-radius:4px;background:var(--red);color:#fff;vertical-align:2px}
+.pc .badges{display:flex;flex-wrap:wrap;gap:4px;margin:5px 0 4px}
+.pc .rb{display:inline-flex;align-items:center;gap:4px;font-style:normal;font-size:.56rem;font-weight:700;letter-spacing:.08em;padding:2px 6px 2px 3px;border-radius:999px;border:1px solid var(--line);color:var(--text);background:var(--panel2)}
+.pc .rb i{font-style:normal;font-family:var(--brush);font-size:.8rem;line-height:1;display:grid;place-items:center;width:16px;height:16px;border-radius:50%;background:rgba(0,0,0,.3)}
+.pc .r-dn{border-color:rgba(215,38,49,.6)}.pc .r-dn i{background:var(--red);color:#fff}
+.pc .r-to{border-color:rgba(31,111,178,.7)}.pc .r-to i{background:#1F6FB2;color:#fff}
+.pc .r-all{border-color:rgba(60,192,143,.6)}.pc .r-all i{background:#1E8A5A;color:#fff}
+.pc .r-old{color:var(--dim)}
+.pc .r-leg,.pc .r-king{border-color:var(--gold);color:var(--gold-soft)}.pc .r-leg i,.pc .r-king i{background:var(--gold);color:var(--paper-ink)}
+.pc small{display:block;font-size:.66rem;color:var(--dim)}
+.pc .pb{text-align:right}
+.pc .pb b{display:block;font-family:var(--display);font-weight:800;font-size:1.15rem;color:var(--gold-soft);font-variant-numeric:tabular-nums lining-nums}
+.pc .pb small{font-size:.56rem;font-weight:700;letter-spacing:.1em}
+.pc.leg{border-color:rgba(233,185,73,.55);background:linear-gradient(90deg,rgba(233,185,73,.1),var(--panel) 60%)}
+.pc.mine{border-color:var(--red);animation:minePulse 2.6s ease-in-out infinite}
+@media (prefers-reduced-motion:reduce){.legends::before,.rows .r.top1::after,.rows .r.mine,.pc.mine,.rows.anim>li{animation:none}}
 </style>
 
 </head>
@@ -971,11 +1030,13 @@ function rooPB(name,score,prev){
 /* ---------- what's new ---------- */
 var K_SEEN='ts_rush_news_v1';
 var NEWS=[
- {id:'u18',h:'LATEST',items:[
-  ['🍽️','Takeout and dine-in prices','Takeout and dine-in now have their own prices, and dine-in has its own dishes. Pick Server, Cashier or All-rounder and every price, quiz and pattern matches your job.'],
-  ['👥','A leaderboard for each role','Servers, cashiers and all-rounders each get their own board and their own Rooster King.']
+ {id:'u19',h:'LATEST',items:[
+  ['🏛️','Legends and fresh boards','Every board starts fresh with the new prices. The top 3 Classic scores from before the price change live on forever on the gold Legends plaque.'],
+  ['🪪','Player cards','The Players tab now shows everyone who has ever played, with role badges, best scores, rank and when they last played.']
  ]},
- {id:'u17',h:'RECENT',items:[
+ {id:'u18',h:'RECENT',items:[
+  ['🍽️','Takeout and dine-in prices','Takeout and dine-in now have their own prices, and dine-in has its own dishes. Pick Server, Cashier or All-rounder and every price, quiz and pattern matches your job.'],
+  ['👥','A leaderboard for each role','Servers, cashiers and all-rounders each get their own board and their own Rooster King.'],
   ['💲','New menu prices','Every price now matches the updated Tak Shing menu, including the $9.50 lunch special, the $52.95 family dinner and Buddha Delight ($14.50). Flashcards, quizzes and the price patterns all use the new prices.']
  ]},
  {id:'u16',h:'EARLIER',items:[
@@ -1146,7 +1207,8 @@ var FBCFG={"apiKey": "AIzaSyDvJkJlZL2_9oQyg4ajw33D8HRvMA93srM", "authDomain": "t
 var STANDALONE=!(window.claude&&window.claude.use);
 var FBMODE=!!FBCFG&&STANDALONE,FBSET=null,FB=null;
 var DB=null,UID=null,CANW=null,SHARED=false,STATUS=STANDALONE?'local':'connecting',LASTTXT='';
-var plays=[],byUid={},B={tab:'all'},HL=null;
+var plays=[],ALLP=[],byUid={},B={tab:'all'},HL=null,BANIM=true;
+var CUTOFF=1791925791000; /* Oct 13 2026, 4:09 pm CT: takeout/dine-in price change. Older scores become Legends. */
 
 function cleanName(n){n=String(n==null?'':n).toUpperCase().replace(/[^A-Z0-9 .!_\-]/g,'').replace(/\s+/g,' ').trim().slice(0,8);return n||'ANON'}
 function cmpPlay(a,b){return b.s-a.s||a.t-b.t}
@@ -1158,13 +1220,15 @@ function readSnapshot(snap){
   var all=[];byUid={};
   snap.docs.forEach(function(d){
     var x=d.data()||{};byUid[d.id]=x;
-    (Array.isArray(x.plays)?x.plays.slice(0,30):[]).forEach(function(p){var q=parsePlay(p,d.id);if(q&&q.ro===ROLE)all.push(q)});
+    (Array.isArray(x.plays)?x.plays.slice(0,30):[]).forEach(function(p){var q=parsePlay(p,d.id);if(q)all.push(q)});
   });
-  plays=all.sort(cmpPlay);
+  ALLP=all.sort(cmpPlay);
+  plays=ALLP.filter(function(q){return q.t>=CUTOFF&&q.ro===ROLE});
 }
 function readLocal(){
   var arr=[];try{arr=JSON.parse(lsGet(K_LOCAL)||'[]')}catch(e){}
-  plays=(Array.isArray(arr)?arr:[]).map(function(p){return parsePlay(p,'local')}).filter(function(p){return p&&p.ro===ROLE}).sort(cmpPlay);
+  ALLP=(Array.isArray(arr)?arr:[]).map(function(p){return parsePlay(p,'local')}).filter(Boolean).sort(cmpPlay);
+  plays=ALLP.filter(function(q){return q.t>=CUTOFF&&q.ro===ROLE});
 }
 
 function newId(){var a='abcdefghijklmnopqrstuvwxyz0123456789',s='';try{var r=new Uint8Array(20);crypto.getRandomValues(r);for(var i=0;i<20;i++)s+=a[r[i]%36]}catch(e){for(var j=0;j<20;j++)s+=a[Math.floor(Math.random()*36)]}return s}
@@ -1219,8 +1283,8 @@ async function postScore(play){
       var mine=(Array.isArray(cur.plays)?cur.plays:[]).map(function(p){return parsePlay(p,UID)}).filter(Boolean);
       mine.push({uid:UID,n:play.n,s:play.s,r:play.r,b:play.b,m:play.m,c:play.c,t:play.t,ro:ROLE});
       mine.sort(cmpPlay);
-      var per={},keep=[];mine.forEach(function(p){per[p.ro]=(per[p.ro]||0)+1;if(per[p.ro]<=10)keep.push({n:p.n,s:p.s,r:p.r,b:p.b,m:p.m,c:p.c,t:p.t,ro:p.ro})});
-      var gm={};if(cur.gm&&typeof cur.gm==='object'){['to','dn','all'].forEach(function(k){if(+cur.gm[k])gm[k]=+cur.gm[k]})}else if(+cur.games)gm.to=+cur.games;
+      var per={},keep=[];mine.forEach(function(p){var bk=p.t<CUTOFF?'old':p.ro,cap=bk==='old'?10:6;per[bk]=(per[bk]||0)+1;if(per[bk]<=cap){var o={n:p.n,s:p.s,r:p.r,b:p.b,m:p.m,c:p.c,t:p.t};if(p.t>=CUTOFF)o.ro=p.ro;keep.push(o)}});
+      var gm={};if(cur.gm&&typeof cur.gm==='object'){['to','dn','all'].forEach(function(k){if(+cur.gm[k])gm[k]=+cur.gm[k]})}
       gm[ROLE]=(gm[ROLE]||0)+1;
       await FBSET({v:1,games:(+cur.games||0)+1,gm:gm,plays:keep});
       return 'shared';
@@ -1232,8 +1296,8 @@ async function postScore(play){
       var mine=(Array.isArray(cur.plays)?cur.plays:[]).map(function(p){return parsePlay(p,UID)}).filter(Boolean);
       mine.push({uid:UID,n:play.n,s:play.s,r:play.r,b:play.b,m:play.m,c:play.c,t:play.t,ro:ROLE});
       mine.sort(cmpPlay);
-      var per={},keep=[];mine.forEach(function(p){per[p.ro]=(per[p.ro]||0)+1;if(per[p.ro]<=10)keep.push({n:p.n,s:p.s,r:p.r,b:p.b,m:p.m,c:p.c,t:p.t,ro:p.ro})});
-      var gm={};if(cur.gm&&typeof cur.gm==='object'){['to','dn','all'].forEach(function(k){if(+cur.gm[k])gm[k]=+cur.gm[k]})}else if(+cur.games)gm.to=+cur.games;
+      var per={},keep=[];mine.forEach(function(p){var bk=p.t<CUTOFF?'old':p.ro,cap=bk==='old'?10:6;per[bk]=(per[bk]||0)+1;if(per[bk]<=cap){var o={n:p.n,s:p.s,r:p.r,b:p.b,m:p.m,c:p.c,t:p.t};if(p.t>=CUTOFF)o.ro=p.ro;keep.push(o)}});
+      var gm={};if(cur.gm&&typeof cur.gm==='object'){['to','dn','all'].forEach(function(k){if(+cur.gm[k])gm[k]=+cur.gm[k]})}
       gm[ROLE]=(gm[ROLE]||0)+1;
       await DB.collection('scores').doc(UID).set({v:1,games:(+cur.games||0)+1,gm:gm,plays:keep});
       return 'shared';
@@ -1268,6 +1332,57 @@ function rowHTML(rk,p,hl){
   var kg=isKingPlay(p);
   return '<li class="r'+(rk<=3?' top'+rk:'')+(hl?' hl':'')+(mine?' mine':'')+(old?' old':'')+(kg?' king':'')+'">'+(kg?'<span class="rk crown" title="Rooster King">'+CROWN_SVG+'</span>':'<span class="rk">'+rk+'</span>')+'<span class="nm"><span class="n1">'+esc(p.n)+(kg?'<em class="kb">鸡王</em>':'')+(mine?'<em>YOU</em>':'')+tag+'</span><small class="ag">'+ago(p.t)+'</small></span><span class="md">'+modeLabel(p)+'</span><span class="sc">'+p.s.toLocaleString()+'</span></li>';
 }
+function legends(){
+  var seen={},out=[];
+  ALLP.forEach(function(p){if(p.t>=CUTOFF||p.c!==1||p.s<=0||seen[p.n]||out.length>=3)return;seen[p.n]=1;out.push(p)});
+  return out;
+}
+function oldBests(){
+  var b={};ALLP.forEach(function(p){if(p.t>=CUTOFF||p.s<=0)return;if(!b[p.m]||cmpPlay(p,b[p.m])<0)b[p.m]=p});
+  return b;
+}
+function shortDate(t){try{return new Date(t).toLocaleDateString(undefined,{month:'short',day:'numeric'})}catch(e){return ''}}
+function legendsHTML(){
+  var L=legends();if(!L.length)return '';
+  var ob=oldBests(),medal=['金','银','铜'];
+  return '<section class="legends" aria-label="Legends: top 3 Classic scores from before the price change">'+
+    '<div class="lg-h"><i aria-hidden="true">传奇</i><div><b>LEGENDS</b><span>Top 3 Classic scores from before the price change</span></div></div>'+
+    '<ol class="lg">'+L.map(function(p,i){return '<li class="g'+(i+1)+'"><span class="medal" aria-label="'+['1st','2nd','3rd'][i]+'">'+medal[i]+'</span><span class="ln">'+esc(p.n)+'<small>'+shortDate(p.t)+'</small></span><span class="ls">'+p.s.toLocaleString()+'</span></li>'}).join('')+'</ol>'+
+    (Object.keys(ob).length?'<details class="lg-cat"><summary>BEST IN EACH QUIZ TYPE</summary><ul>'+Object.keys(MODE_SHORT).filter(function(m){return ob[m]}).map(function(m){var p=ob[m];return '<li><span>'+esc(MODE_SHORT[m])+'</span><b>'+esc(p.n)+'</b><em>'+p.s.toLocaleString()+'</em></li>'}).join('')+'</ul></details>':'')+
+  '</section>';
+}
+var ROLE_BADGE={dn:['服','SERVER'],to:['收','CASHIER'],all:['全','ALL-ROUNDER']};
+function playerCards(){
+  var g={},L=legends().map(function(p){return p.n});
+  ALLP.forEach(function(p){
+    var k=p.n;if(!g[k])g[k]={n:p.n,uids:{},roles:{},best:{},top:null,cnt:0,last:0,old:false};
+    var x=g[k];x.cnt++;x.uids[p.uid]=1;if(p.t>x.last)x.last=p.t;
+    if(!x.top||cmpPlay(p,x.top)<0)x.top=p;
+    var bk=p.t<CUTOFF?'old':p.ro;if(bk==='old')x.old=true;else x.roles[bk]=1;
+    if(!x.best[bk]||cmpPlay(p,x.best[bk])<0)x.best[bk]=p;
+  });
+  return Object.keys(g).map(function(k){return g[k]}).sort(function(a,b){
+    var A=a.best[ROLE],Bb=b.best[ROLE];
+    if(A&&!Bb)return -1;if(Bb&&!A)return 1;
+    if(A&&Bb)return cmpPlay(A,Bb);
+    return cmpPlay(a.top,b.top);
+  }).map(function(x){x.legend=L.indexOf(x.n)>=0;return x});
+}
+function playersHTML(){
+  var pc=playerCards();
+  if(!pc.length)return '<li class="r empty fresh"><span aria-hidden="true">🐓</span> No players yet. Be the first name on the board!</li>';
+  var me=cleanName(lsGet(K_NAME)||'');
+  return '<li class="pc-count">'+pc.length+(pc.length===1?' PLAYER':' PLAYERS')+' SO FAR</li>'+pc.map(function(x,i){
+    var mine=(UID&&x.uids[UID])||(!SHARED&&x.n===me);
+    var cur=x.best[ROLE],show=cur||x.top,lab=cur?ROLES[ROLE].n.toUpperCase():(x.top.t<CUTOFF?'OLD MENU':ROLES[x.top.ro].n.toUpperCase());
+    var kp=kingPlay(),kg=!!kp&&cur&&kp.n===x.n&&cur.s===kp.s;
+    var badges=['dn','to','all'].filter(function(r){return x.roles[r]}).map(function(r){return '<em class="rb r-'+r+'"><i>'+ROLE_BADGE[r][0]+'</i>'+ROLE_BADGE[r][1]+'</em>'}).join('')+
+      (x.old?'<em class="rb r-old"><i>老</i>OLD MENU</em>':'')+(x.legend?'<em class="rb r-leg"><i>传</i>LEGEND</em>':'')+(kg?'<em class="rb r-king"><i>王</i>KING</em>':'');
+    return '<li class="pc'+(mine?' mine':'')+(x.legend?' leg':'')+'" style="--i:'+i+'"><span class="seal" aria-hidden="true">'+esc(x.n.charAt(0))+'</span>'+
+      '<div class="pi"><b>'+esc(x.n)+(mine?'<em class="you">YOU</em>':'')+'</b><span class="badges">'+badges+'</span><small>'+rankName(x.top.s)+' · '+x.cnt+(x.cnt===1?' play':' plays')+' · last played '+ago(x.last)+'</small></div>'+
+      '<div class="pb"><b>'+show.s.toLocaleString()+'</b><small>BEST · '+lab+'</small></div></li>';
+  }).join('');
+}
 function playerRows(){
   var g={};
   plays.forEach(function(p){
@@ -1293,8 +1408,12 @@ function boardHTML(){
   }else if(STATUS==='local'){st=STANDALONE?'Scores are saved on this device. Use Copy my score to challenge friends.':'This device only. Open the shared page to compete with friends.';cls+=' warn'}
   else st='Connecting to the board...';
   h+='<p class="'+cls+'">'+(st.indexOf('<b>')===0?st:esc(st))+'</p>';
-  h+='<ol class="rows">';
+  h=legendsHTML()+h;
+  var anim=BANIM&&!REDUCED;BANIM=false;
+  h+='<ol class="rows'+(anim?' anim':'')+(B.tab==='players'?' pcs':'')+'">';
   if(B.tab==='players'){
+    h+=playersHTML();
+  }else if(false){
     var pr=playerRows();
     if(!pr.length)h+='<li class="r empty">No players yet. Be the first on the board.</li>';
     pr.slice(0,10).forEach(function(x,i){
@@ -1304,12 +1423,12 @@ function boardHTML(){
     });
   }else{
     var list=listFor(B.tab);
-    if(!list.length)h+='<li class="r empty">No scores yet. Be the first.</li>';
+    if(!list.length)h+='<li class="r empty fresh"><span aria-hidden="true">🐓</span> Fresh board. Be the first name on the new menu!</li>';
     var shown=list.slice(0,10),hit=false;
     shown.forEach(function(p,i){
       var hl=HL&&p.t===HL.t&&p.s===HL.s&&p.n===HL.n&&isMine(p);
       if(hl)hit=true;
-      h+=rowHTML(i+1,p,hl);
+      h+=rowHTML(i+1,p,hl).replace('<li class="r','<li style="--i:'+i+'" class="r');
     });
     if(HL&&!hit){
       var idx=-1;list.forEach(function(p,i){if(p.t===HL.t&&p.s===HL.s&&p.n===HL.n&&isMine(p))idx=i});
@@ -1331,6 +1450,7 @@ function classicNote(){
   return c?'<b>CLASSIC RUN.</b> This counts for the Classic board.':'<b>Practice run.</b> Shows on All Plays, not Classic.';
 }
 function home(){
+  BANIM=true;
   clearInterval(timer);G=null;
   $('#screen').className='home';
   $('#screen').innerHTML=
@@ -1495,6 +1615,7 @@ async function doPost(){
   results(play,res);
 }
 function results(play,res){
+  BANIM=true;
   var g=LASTG;
   B.tab=g&&g.classic?'classic':'all';
   HL=play?{t:play.t,s:play.s,n:play.n}:null;
@@ -1932,7 +2053,7 @@ document.addEventListener('click',function(e){
   if(b.dataset.view){show(b.dataset.view);return}
   if(b.dataset.smode){FOPT.kind=b.dataset.smode;saveStudy();studyHome();return}
   if(b.classList.contains('opt')){if(G&&G.q)answer(parseInt(b.dataset.i,10));return}
-  if(b.dataset.btab){B.tab=b.dataset.btab;paintBoard();return}
+  if(b.dataset.btab){B.tab=b.dataset.btab;BANIM=true;paintBoard();return}
   if(b.dataset.mode){
     OPT.mode=b.dataset.mode;lsSet(K_OPT,JSON.stringify(OPT));
     document.querySelectorAll('.chip').forEach(function(c){var on=c.dataset.mode===OPT.mode;c.classList.toggle('on',on);c.setAttribute('aria-checked',on)});
