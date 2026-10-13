@@ -48,6 +48,9 @@ button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visi
 .snd[aria-pressed="true"]{color:var(--gold);border-color:var(--gold)}
 @media (max-width:420px){.tools{position:static;grid-column:1/-1;justify-self:center;margin-top:6px}}
 .snd.news{color:var(--gold);border-color:var(--gold)}
+.snd.info{width:30px;height:30px;padding:0;display:inline-grid;place-items:center;border-radius:50%;color:var(--gold);border-color:var(--gold);font-family:Georgia,'Times New Roman',serif;font-style:italic;font-weight:700;font-size:1rem;letter-spacing:0}
+#news.info .bd p{margin:12px 0 0;color:var(--dim);font-size:.9rem;line-height:1.5}
+#news.info .bd p b{color:#fff}
 .snd .dot{position:absolute;top:-4px;right:-3px;width:12px;height:12px;border-radius:50%;background:#FF3B3B;border:2px solid #1A0A0C;box-shadow:0 0 10px #FF3B3B;animation:epPulse 1s ease-in-out infinite alternate}
 
 /* signboard tabs */
@@ -513,7 +516,7 @@ ol.rows{list-style:none;margin:0;padding:0;border:1px solid var(--line);border-r
     <svg class="lantern" viewBox="0 0 44 96" aria-hidden="true"><line x1="22" y1="0" x2="22" y2="14" stroke="#E9B949" stroke-width="1.5"/><ellipse class="glow" cx="22" cy="44" rx="21" ry="28" fill="#FF5A3C" fill-opacity=".22"/><rect x="14" y="14" width="16" height="6" rx="1.5" fill="#E9B949"/><ellipse cx="22" cy="44" rx="18" ry="23" fill="#D72631"/><path d="M22 21v46M13 24c-5 12-5 28 0 40M31 24c5 12 5 28 0 40" stroke="#8E1219" stroke-width="1.4" fill="none"/><ellipse cx="16" cy="37" rx="3.5" ry="9" fill="#FFFFFF" fill-opacity=".2"/><rect x="14" y="66" width="16" height="6" rx="1.5" fill="#E9B949"/><line x1="22" y1="72" x2="22" y2="78" stroke="#E9B949" stroke-width="1.5"/><path d="M18 78h8l-1 16h-6z" fill="#D72631"/></svg>
     <div class="brand"><span class="seal" aria-hidden="true">点菜</span><h1>ORDER RUSH</h1><p>TAK SHING MENU TRAINER</p></div>
     <svg class="lantern lt-r" viewBox="0 0 44 96" aria-hidden="true"><line x1="22" y1="0" x2="22" y2="14" stroke="#E9B949" stroke-width="1.5"/><ellipse class="glow" cx="22" cy="44" rx="21" ry="28" fill="#FF5A3C" fill-opacity=".22"/><rect x="14" y="14" width="16" height="6" rx="1.5" fill="#E9B949"/><ellipse cx="22" cy="44" rx="18" ry="23" fill="#D72631"/><path d="M22 21v46M13 24c-5 12-5 28 0 40M31 24c5 12 5 28 0 40" stroke="#8E1219" stroke-width="1.4" fill="none"/><ellipse cx="16" cy="37" rx="3.5" ry="9" fill="#FFFFFF" fill-opacity=".2"/><rect x="14" y="66" width="16" height="6" rx="1.5" fill="#E9B949"/><line x1="22" y1="72" x2="22" y2="78" stroke="#E9B949" stroke-width="1.5"/><path d="M18 78h8l-1 16h-6z" fill="#D72631"/></svg>
-    <div class="tools"><button class="snd news" id="newsBtn" type="button" aria-haspopup="dialog">新 WHAT'S NEW<i class="dot" id="newsDot" hidden></i></button><button class="snd" id="snd" aria-pressed="true">SOUND ON</button></div>
+    <div class="tools"><button class="snd info" id="infoBtn" type="button" aria-haspopup="dialog" aria-label="About this site" title="About this site">i</button><button class="snd news" id="newsBtn" type="button" aria-haspopup="dialog">新 WHAT'S NEW<i class="dot" id="newsDot" hidden></i></button><button class="snd" id="snd" aria-pressed="true">SOUND ON</button></div>
   </header>
   <button class="kingbar" id="kingBar" data-view="arcade" hidden></button>
   <nav class="views"><div class="in" role="tablist">
@@ -1012,6 +1015,22 @@ function openNews(){
       return '<li class="'+(fresh&&g.id===NEWS_ID?'new':'')+'"><span class="ic" aria-hidden="true">'+it[0]+'</span><div><b>'+esc(it[1])+(fresh&&g.id===NEWS_ID?'<em class="nw">NEW</em>':'')+'</b><span>'+esc(it[2])+'</span></div></li>'}).join('')+'</ul>'}).join('')+
     '</div></div>';
   function close(){o.remove();document.removeEventListener('keydown',esc2);lsSet(K_SEEN,NEWS_ID);paintNews()}
+  function esc2(e){if(e.key==='Escape')close()}
+  o.addEventListener('click',function(e){if(e.target===o||e.target.closest('.x'))close()});
+  document.addEventListener('keydown',esc2);
+  document.body.appendChild(o);
+  var x=o.querySelector('.x');if(x)x.focus();
+}
+function openInfo(){
+  if($('#news'))return;
+  var o=document.createElement('div');o.id='news';o.className='info';o.setAttribute('role','dialog');o.setAttribute('aria-modal','true');o.setAttribute('aria-label','About this site');
+  var rows=[['单','Sheet','The full Tak Shing menu in one place, with every abbreviation and price, so you can look things up fast.'],['式','Patterns','The shortcuts behind the abbreviations (like every chow mein ending in cm) and how prices are written.'],['学','Study','Flashcards and Write it. Practice reading and writing orders until the abbreviations feel automatic.'],['快','Arcade','A timed order quiz. Answer fast, keep your streak, and post your score to the leaderboard.']];
+  o.innerHTML='<div class="card"><div class="hd"><i aria-hidden="true">鸡</i><h2>About Order Rush</h2><button class="x" type="button" aria-label="Close">✕</button></div><div class="bd">'+
+    '<p><b>Order Rush</b> is a practice tool for learning the Tak Shing take-out menu: the order abbreviations and the prices, so taking a phone order gets quicker and easier.</p>'+
+    '<h3>WHAT IS INSIDE</h3><ul>'+rows.map(function(r){return '<li><span class="ic" aria-hidden="true">'+r[0]+'</span><div><b>'+r[1]+'</b><span>'+esc(r[2])+'</span></div></li>'}).join('')+'</ul>'+
+    '<h3>THE LEADERBOARD</h3><p>Scores from everyone who plays are shown together on one board and update live. Pick a name of up to 8 characters when you post. Beat the top score to become the Rooster King.</p>'+
+    '</div></div>';
+  function close(){o.remove();document.removeEventListener('keydown',esc2)}
   function esc2(e){if(e.key==='Escape')close()}
   o.addEventListener('click',function(e){if(e.target===o||e.target.closest('.x'))close()});
   document.addEventListener('keydown',esc2);
@@ -1833,6 +1852,7 @@ document.addEventListener('click',function(e){
       try{navigator.clipboard.writeText(LASTTXT).then(function(){btn.textContent='COPIED'},fallback)}catch(err){fallback()}
     })();break;
     case 'newsBtn':openNews();break;
+    case 'infoBtn':openInfo();break;
     case 'snd':SND=!SND;lsSet(K_SND,SND?'1':'0');paintSnd();if(SND)sfx('ok');break;
   }
 });
