@@ -754,8 +754,16 @@ function audioCtx(){
   MG.connect(comp);comp.connect(AC.destination);
   return AC;
 }
+var KEEP=null,SILENT='data:audio/wav;base64,UklGRkQDAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YSADAACAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgA==';
+function keepAlive(){
+  try{
+    if(!KEEP){KEEP=document.createElement('audio');KEEP.src=SILENT;KEEP.loop=true;KEEP.preload='auto';KEEP.setAttribute('playsinline','');KEEP.setAttribute('webkit-playsinline','');KEEP.volume=.01}
+    if(KEEP.paused){var pr=KEEP.play();if(pr&&pr.catch)pr.catch(function(){})}
+  }catch(e){}
+}
 function unlockAudio(){
   try{
+    keepAlive();
     if(navigator.audioSession)navigator.audioSession.type='playback';
     var a=audioCtx();if(!a)return;
     if(a.state!=='running'&&a.resume)a.resume();
@@ -763,6 +771,7 @@ function unlockAudio(){
     if(!UNLOCKED){var b=a.createBuffer(1,1,22050),s=a.createBufferSource();s.buffer=b;s.connect(a.destination);s.start(0);UNLOCKED=true}
   }catch(e){}
 }
+document.addEventListener('visibilitychange',function(){if(!document.hidden&&AC&&AC.state!=='running'&&AC.resume){try{AC.resume()}catch(e){}}});
 ['pointerdown','touchstart','touchend','click','keydown'].forEach(function(ev){document.addEventListener(ev,unlockAudio,{passive:true,capture:true})});
 function tone(f,d,type,vol,at){
   var a=audioCtx();if(!a)return;
