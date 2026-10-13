@@ -1043,7 +1043,9 @@ function openInfo(){
 /* ---------- rooster king ---------- */
 var K_KING='ts_rush_king_v1',KCHK=false;
 var CROWN_SVG='<svg viewBox="0 0 44 40" aria-hidden="true"><path d="M4 32 L2 8 L13 18 L22 2 L31 18 L42 8 L40 32 Z" fill="#8E1219"/><rect x="4" y="30" width="36" height="7" rx="2" fill="#6B0E14"/><circle cx="22" cy="33.5" r="2.4" fill="#FFF3B8"/></svg>';
-function kingPlay(){return plays.length&&plays[0].s>0?plays[0]:null}
+function kingPlay(){for(var i=0;i<plays.length;i++){if(plays[i].c===1)return plays[i].s>0?plays[i]:null}return null}
+function modeLabel(p){return p.c===1?'CLASSIC':MODE_TAG[p.m]}
+function isKingPlayer(p){var k=kingPlay();return !!k&&k.uid===p.uid&&(k.uid!=='local'||k.n===p.n)}
 function isKingPlay(p){var k=kingPlay();return !!k&&p.t===k.t&&p.s===k.s&&p.n===k.n}
 function isMe(p){if(!p)return false;if(SHARED)return !!UID&&p.uid===UID;return p.n===cleanName(lsGet(K_NAME)||'')}
 function reign(t){var d=Math.max(0,Date.now()-t),h=Math.floor(d/3600000);if(h<1)return ['JUST','CROWNED'];if(h<24)return [h+'H','REIGN'];var dd=Math.floor(h/24);return [dd+(dd===1?' DAY':' DAYS'),'REIGN']}
@@ -1239,7 +1241,7 @@ function rowHTML(rk,p,hl){
   var isNew=cnt>1&&p.t===latest,old=cnt>1&&p.t!==latest;
   var tag=isNew?'<em class="newtag">NEW</em>':(old?'<em class="oldtag">OLD</em>':'');
   var kg=isKingPlay(p);
-  return '<li class="r'+(rk<=3?' top'+rk:'')+(hl?' hl':'')+(mine?' mine':'')+(old?' old':'')+(kg?' king':'')+'">'+(kg?'<span class="rk crown" title="Rooster King">'+CROWN_SVG+'</span>':'<span class="rk">'+rk+'</span>')+'<span class="nm"><span class="n1">'+esc(p.n)+(kg?'<em class="kb">鸡王</em>':'')+(mine?'<em>YOU</em>':'')+tag+'</span><small class="ag">'+ago(p.t)+'</small></span><span class="md">'+MODE_TAG[p.m]+'</span><span class="sc">'+p.s.toLocaleString()+'</span></li>';
+  return '<li class="r'+(rk<=3?' top'+rk:'')+(hl?' hl':'')+(mine?' mine':'')+(old?' old':'')+(kg?' king':'')+'">'+(kg?'<span class="rk crown" title="Rooster King">'+CROWN_SVG+'</span>':'<span class="rk">'+rk+'</span>')+'<span class="nm"><span class="n1">'+esc(p.n)+(kg?'<em class="kb">鸡王</em>':'')+(mine?'<em>YOU</em>':'')+tag+'</span><small class="ag">'+ago(p.t)+'</small></span><span class="md">'+modeLabel(p)+'</span><span class="sc">'+p.s.toLocaleString()+'</span></li>';
 }
 function playerRows(){
   var g={};
@@ -1271,7 +1273,7 @@ function boardHTML(){
     if(!pr.length)h+='<li class="r empty">No players yet. Be the first on the board.</li>';
     pr.slice(0,10).forEach(function(x,i){
       var mine=isMine(x.best);
-      var kg=isKingPlay(x.best);
+      var kg=isKingPlayer(x.best);
       h+='<li class="r'+(i<3?' top'+(i+1):'')+(mine?' mine':'')+(kg?' king':'')+'">'+(kg?'<span class="rk crown" title="Rooster King">'+CROWN_SVG+'</span>':'<span class="rk">'+(i+1)+'</span>')+'<span class="nm">'+esc(x.best.n)+(kg?'<em class="kb">鸡王</em>':'')+(mine?'<em>YOU</em>':'')+'</span><span class="md">'+x.games+(x.games===1?' GAME':' GAMES')+'</span><span class="sc">'+x.best.s.toLocaleString()+'</span></li>';
     });
   }else{
@@ -1492,7 +1494,7 @@ function results(play,res){
     var topPrev=others.reduce(function(m,p){return Math.max(m,p.s)},-1);
     var mineP=others.filter(function(p){return p.n===play.n});
     var myPrev=mineP.reduce(function(m,p){return Math.max(m,p.s)},-1);
-    if(play.s>topPrev)rooEpic(play.n,play.s,topPrev);
+    if(play.c===1&&play.s>topPrev)rooEpic(play.n,play.s,topPrev);
     else if(mineP.length&&play.s>myPrev)rooPB(play.n,play.s,myPrev);
   }
 }
