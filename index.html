@@ -1309,7 +1309,11 @@ async function postScore(play){
   return SHARED?'denied':'local';
 }
 
-function listFor(tab){return tab==='classic'?plays.filter(function(p){return p.c===1}):plays}
+function listFor(tab){
+  var src=tab==='classic'?plays.filter(function(p){return p.c===1}):plays,seen={};
+  /* one row per player: their best score (plays are already sorted best first) */
+  return src.filter(function(p){var k=pKey(p);if(seen[k])return false;seen[k]=1;return true});
+}
 function placeOf(list,play){
   for(var i=0;i<list.length;i++){if(list[i].t===play.t&&list[i].s===play.s&&list[i].n===play.n)return i+1}
   return list.filter(function(p){return p.s>play.s}).length+1;
@@ -1325,10 +1329,7 @@ function ago(t){
   return Math.floor(dd/30)+'mo ago';
 }
 function rowHTML(rk,p,hl){
-  var mine=isMine(p),k=pKey(p),latest=0,best=null,cnt=0;
-  plays.forEach(function(q){if(pKey(q)===k){cnt++;if(q.t>latest)latest=q.t;if(!best||cmpPlay(q,best)<0)best=q}});
-  var isNew=cnt>1&&p.t===latest,old=cnt>1&&p.t!==latest;
-  var tag=isNew?'<em class="newtag">NEW</em>':(old?'<em class="oldtag">OLD</em>':'');
+  var mine=isMine(p),old=false,tag='';
   var kg=isKingPlay(p);
   return '<li class="r'+(rk<=3?' top'+rk:'')+(hl?' hl':'')+(mine?' mine':'')+(old?' old':'')+(kg?' king':'')+'">'+(kg?'<span class="rk crown" title="Rooster King">'+CROWN_SVG+'</span>':'<span class="rk">'+rk+'</span>')+'<span class="nm"><span class="n1">'+esc(p.n)+(kg?'<em class="kb">鸡王</em>':'')+(mine?'<em>YOU</em>':'')+tag+'</span><small class="ag">'+ago(p.t)+'</small></span><span class="md">'+modeLabel(p)+'</span><span class="sc">'+p.s.toLocaleString()+'</span></li>';
 }
@@ -1398,7 +1399,7 @@ function playerRows(){
   return arr;
 }
 function boardHTML(){
-  var tabs=[['all','ALL PLAYS'],['classic','CLASSIC'],['players','PLAYERS']];
+  var tabs=[['all','ALL MODES'],['classic','CLASSIC'],['players','PLAYERS']];
   var h='<div class="tabs" role="tablist">'+tabs.map(function(t){return '<button class="tab" role="tab" data-btab="'+t[0]+'" aria-selected="'+(B.tab===t[0])+'">'+t[1]+'</button>'}).join('')+'</div>';
   var st='',cls='status';
   if(STATUS==='live'){
