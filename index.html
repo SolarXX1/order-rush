@@ -1569,7 +1569,7 @@ function answer(i){
     var nb=$('#next');if(nb)nb.focus();
   }
 }
-function afterAnswer(){if(!G)return;if(VIEW!=='arcade'||document.hidden){G.pend=true;return}G.pend=false;if(G.strikes>=MAXS)over();else nextQ()}
+function afterAnswer(){if(!G)return;if($('.leaveq')){G.pend=true;return}if(VIEW!=='arcade'||document.hidden){G.pend=true;return}G.pend=false;if(G.strikes>=MAXS)over();else nextQ()}
 
 function priceText(c){
   var it=c.it,sec=c.sec;
@@ -2036,6 +2036,27 @@ function wNext(){
 var VIEW='sheet',VIEWS=['sheet','pat','study','arcade'];
 function pauseGame(){if(G&&G.q&&!G.q.locked&&!G.paused){G.paused=performance.now();clearInterval(timer)}}
 function resumeGame(){if(G&&G.pend&&!(G.q&&!G.q.locked)){afterAnswer();return}if(G&&G.paused){G.q.t0+=performance.now()-G.paused;G.paused=0;clearInterval(timer);timer=setInterval(tick,60)}}
+/* leaving the arcade in the middle of a shift asks first */
+function askLeave(v){
+  if($('.leaveq'))return true;
+  pauseGame();
+  var o=document.createElement('div');o.id='news';o.className='leaveq';o.setAttribute('role','alertdialog');o.setAttribute('aria-modal','true');o.setAttribute('aria-label','Leave your shift?');
+  o.innerHTML='<div class="card"><div class="hd"><i aria-hidden="true">停</i><h2>Leave your shift?</h2></div><div class="bd">'+
+    '<p class="lead">You are in the middle of a run. If you leave now, this run ends and the score is lost.</p>'+
+    '<div class="two" style="display:grid;gap:10px;margin-top:14px"><button type="button" class="btn alt" data-lv="stay">KEEP PLAYING</button><button type="button" class="btn hot" data-lv="go">END RUN AND LEAVE</button></div></div></div>';
+  function close(){o.remove();document.removeEventListener('keydown',esc2)}
+  function stay(){close();resumeGame()}
+  function esc2(e){if(e.key==='Escape')stay()}
+  o.addEventListener('click',function(e){
+    var x=e.target.closest('[data-lv]');
+    if(x){if(x.dataset.lv==='go'){close();home();show(v)}else stay();return}
+    if(e.target===o)stay();
+  });
+  document.addEventListener('keydown',esc2);
+  document.body.appendChild(o);
+  var k=o.querySelector('[data-lv="stay"]');if(k)k.focus();
+  return true;
+}
 function show(v,noScroll){
   if(VIEWS.indexOf(v)<0)v='sheet';
   if(VIEW==='arcade'&&v!=='arcade')pauseGame();
@@ -2051,7 +2072,7 @@ function show(v,noScroll){
 document.addEventListener('click',function(e){
   var c=e.target.closest('#sheet [data-c]');if(c){c.classList.toggle('show');return}
   var b=e.target.closest('button');if(!b)return;
-  if(b.dataset.view){show(b.dataset.view);return}
+  if(b.dataset.view){if(VIEW==='arcade'&&b.dataset.view!=='arcade'&&G&&askLeave(b.dataset.view))return;show(b.dataset.view);return}
   if(b.dataset.smode){FOPT.kind=b.dataset.smode;saveStudy();studyHome();return}
   if(b.classList.contains('opt')){if(G&&G.q)answer(parseInt(b.dataset.i,10));return}
   if(b.dataset.btab){B.tab=b.dataset.btab;BANIM=true;paintBoard();return}
